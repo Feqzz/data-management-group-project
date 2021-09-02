@@ -1,0 +1,125 @@
+Title: Expanding on the Norwegian Linked Open Dataset
+Things that can be done right now:
+
+	Write in document:
+		Preface
+			Thomas har en setning der
+		Introduction
+			Nevn semicolon artikkelen
+			Want to publish
+			5 Stars
+		Theoretical background
+			Semantic Web, TBL, Fordeler ulemper osv.
+			Owl, RDF, Turtle, xml, 
+			Sparql
+			Endpoints
+			Ontologies vs relations
+
+			Current state of semantic web, dead or not?
+
+		Literature
+			Current existing solutions/systems
+			Kom tilbake til semicolon, snakk om norsk linked open data
+		Method:
+			Technology choices
+				, java er mest vanlig, men vi har valgt python. Se boka til Jean-Baptiste.Python bedre for forskere
+			How choose Data collection process
+			how choose System architecture
+
+			Ontology architecture
+
+		Resultater	
+
+		Discussion and Conclusions:
+			Conclude that the semantic web is unfortunately dead
+			Talk about challenges
+				Semantic web is dead.
+				Hard, difficult to link with existing data
+
+
+		References:
+			Semicolon
+			Boka til jean baptiste
+			Five stars
+
+	Implementation:
+		Ontology is hopefully complete
+		Json parser for individuals, legges i en owl fil
+		Finne ut av alle subclasses, garage, street, osv
+
+		Serve ontology online
+			Figure out html, how this is hosted etc.
+		Create html if necessary, maybe php to read rdf/owl
+		Sparql Endpoint
+
+
+
+		Finish ontology, create individuals. Create owl file
+		Create triples, RDF file
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			
+	Ideas for queries:
+		Free parking in particular area?
+
+
+
+	Ideas for why our project is useful:
+		One query, instead of parsing entire json
+		Simpler to embed parking informaiton in a website
+		Open source
+
+		Advanced queries: Find free handicap parking in city founded before 1950 and with atleast 10000 inhabitants, and have a company in it that was founded before the constitution.
+		Good luck with the current api!
+
+		Fremtidsrettet
+
+
+	Figure out:
+		What goes in which file, owl/rdf?
+		What is hosted where?
+
+
+		Kjøre periodisk:
+			Airflow?
+			Ikke lage duplikat IRI'er
+			Oppdatere information
+
+
+
+
+
+
+
+
+
+
+
+Questions for Vimala:
+	Hvor bundet er vi til formatet?
+	Kan vi legge til kapitler?
+	TOC, Glossery, list of abbrev
+
+	Hva synes du om scopet på oppgaven? Stort nok? Lite nok?
+			
