@@ -104,6 +104,10 @@ skateflua.no_of_handicap_parking_spaces = [0]
 skateflua.comment = ["HC plasser i tilknytning til stedet"]
 skateflua.activation_date = [datetime.datetime(2016, 12, 22, 0, 0, 0)]
 
+# lotType = lot["aktivVersjon"]["typeParkeringsomrade"]
+# if(lotType == "AVGRENSET_OMRÅDE"):
+# elif(lotType == "LANGS_KJOREBANE"):
+# elif(lotType == "PARKERINGSHUS"):
 
 aalesundParkering.operates = [skateflua]
 
