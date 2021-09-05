@@ -1,0 +1,37 @@
+% Report settings
+\title{}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[pdftex]{graphicx}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{adjustbox}
+\usepackage{float}
+\usepackage[backend=biber,style=ieee, sorting=none, hyperref=true]{biblatex}
+\usepackage{longtable}
+\usepackage[toc,acronym]{glossaries}
+\usepackage{listings}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[section]{placeins}
+\usepackage{fancyhdr}
+
+% Advanced Settings
+\pagestyle{fancy}
+\fancyhf{}
+\chead{\leftmark}
+\cfoot{\thepage}
+\linespread{1.5}
+\renewcommand*{\acronymname}{Abbreviations}
+\patchcmd{\@makechapterhead}{\vspace*{50\p@}}{\vspace*{5pt}}{}{}
+\patchcmd{\@makeschapterhead}{\vspace*{50\p@}}{\vspace*{0pt}}{}{}
+\setlength\parindent{0pt}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  frame=single,
+  breaklines=true,
+  postbreak=\mbox{{$\hookrightarrow$}\space},
+}
