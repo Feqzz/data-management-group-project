@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:SDO="http://schema.org/"
+   xmlns:norPark="http://tisk.ml/ontology/parking#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:wikiprop="https://www.wikidata.org/wiki/Property:"
+>
+  <rdf:Description rdf:nodeID="Nefef3eaf27dc484681a19282e3b9856e">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Brunholmgata 6</SDO:streetAddress>
+    <SDO:postalCode>6004</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L953">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Skateflua 2</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="Nc600bd29a853403b9d883b5ab9355969"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">10</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">HC plasser i tilknytning til området</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.474987 6.154417)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-22T08:06:08+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-22T08:06:08+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1227">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Meierikaia</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N74c39b9de6bb4ece88ac587bebb547c3"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Kun utleide plasser på dette området. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.470561 6.162917)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:40:41+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:40:41+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N55c2480b1e934345988bd57a25137c26">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Kjøpmannsgata 6</SDO:streetAddress>
+    <SDO:postalCode>6005</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N35260a40092543689d89809e00047492">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Fløttmanngata 2</SDO:streetAddress>
+    <SDO:postalCode>6004</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L39913">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Gamle Rollonbana</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N5a8bfb9936b14b53bc40c05abfe83637"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">75</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">4</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Det er ikke anlagt ladeplasser på stedet da det ikke er strøm nok i området og kostnadene blir uforholdsmessig høye.
+Vi har plassen på dispensasjon. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.476489 6.163451)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-05-28T07:16:47+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1228">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Brunholmkaia</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N35260a40092543689d89809e00047492"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Kun utleide plasser på dette området. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.473399 6.153237)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:42:37+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:42:37+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1241">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Hjelsetgården</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="Nfba69e4b22bf4cee951b8223d5ea72f5"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">100</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Går inn i sentrumsplanen og har HC-plasser og ladeplasser i forbindelse med denne. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.476296 6.158263)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:28:57+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:28:57+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1244">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Hjelsetgården </rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N180defada985459589a72dee9150d3d7"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">145</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">45 plasser er reservert bobil med plasser dimensjonert for slike.
+75 plasser er utleid.
+25 plasser er vilkårsparkering.
+
+Området inngår i byplanen og har HC-plasser og ladeplasser i forbindelse med denne.  Det er ikke tilgjengelig 400V på stedet.</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.476869 6.161051)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-01-08T13:10:17+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L955">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Skutvika</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N55c2480b1e934345988bd57a25137c26"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">88</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Store gode plasser, ingen avgift.
+
+Tidsbegrensning vil bli vurdert i samarbeid med Ålesund kommune. Siden tingretten ble flyttet til sentrum har behovet endret seg.
+
+Plassene blir skiltet og merket når veibanen er tørr igjen etter vinteren.
+
+Det er ikke satt opp ladeplasser på området, vi ønsker å se dette i sammenheng med Torghallen p-hus. Der er det tilgjengelig 400V. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.469936 6.134986)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-01-08T13:09:07+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N19b8f423c1ec4ba89658b4a53336af77">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Skaregata 1A</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N17e64faff8fa47f49f9cbc30566e2a76">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Notenesgata 13</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L948">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Gateparkering Ålesund</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N30e3b054797241209d7f50f09e44520d"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">442</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">25</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">6</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">31</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">31</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Det er avsatt et tilstrekkelig antall plasser i Ålesund sentrum, i tillegg kommer gratisplasser i P-hus tilhørende vårt datterselskap Sunnmøre parkering AS.
+
+Det er Ålesund kommune som har skiltmyndighet, de har vurdert at det er nok plasser tilgjengelig i dag - men vurderer å sette en makstid på 2 timer.
+Ålesund parkering AS ønsker å se gateparkering i Ålesund sentrum under ett.
+
+For å se plassering av plasser zoom inn på kartet.</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.471776 6.155803)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-02-14T08:05:52+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1245">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Rutebilstasjon øst</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N6128453e23b1453498dfba6dc91b52a7"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">82</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Alle plassene på stedet er utleid. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.470497 6.155161)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:39:05+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:39:05+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L951">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Nedre utstillingsplass</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="Nfd2f52cc89854db9875c09f265938fd7"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">38</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Vil bli opprettet HC plasser i 2017.
+
+Dette området er innlemmet i soneparkering for Ålesund sentrum. Mange av dagens plasser vil derfor bli overtatt av fastboende, det er i dag et nytt privat p-hus med 940 plasser (Aksla parkering) i fjellet under denne plassen. 
+
+</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.472323 6.164368)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2021-07-08T09:16:11+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L937">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Sankten</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N17e64faff8fa47f49f9cbc30566e2a76"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">62</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Vil bli opprettet HC plasser i 2018.
+
+Nytt legesenter rundt hjørnet gjør behovet større en det har vert tidligere. 
+Det er plasser tett på dette området også. En må derfor se dette området i sammenheng med gateparkering i Ålesund sentrum.</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.472731 6.155752)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-01-12T14:11:26+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1247">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Brunholmen p-hus</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="Nefef3eaf27dc484681a19282e3b9856e"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">105</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">2</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">2</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">50 av plassene i huset er reserverte plasser, 55 er avgiftsbelagte. 
+
+Det er ikke tilgjengelig 400V i bygget, vi vurderer enklere ladestasjoner her.
+</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.473175 6.152541)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2018-01-08T13:11:46+00:00</norPark:activation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L961">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Skateflua</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="N19b8f423c1ec4ba89658b4a53336af77"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">15</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">HC plasser i tilknytning til stedet</norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.474309 6.155262)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-22T08:00:05+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-22T08:00:05+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N30e3b054797241209d7f50f09e44520d">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Korsegata</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N180defada985459589a72dee9150d3d7">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Sorenskriver Bulls gate 33</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N6128453e23b1453498dfba6dc91b52a7">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Keiser Wilhelms gate 12</SDO:streetAddress>
+    <SDO:postalCode>6003</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#L1223">
+    <norPark:is_operated_by rdf:resource="http://tisk.ml/ontology/parking#C930475610"/>
+    <rdfs:label>Rutebilstasjon vest</rdfs:label>
+    <SDO:PostalAddress rdf:nodeID="Nf687fef732494f6ebe87cd8531a08757"/>
+    <norPark:no_of_parking_spaces_with_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">66</norPark:no_of_parking_spaces_with_fee>
+    <norPark:no_of_parking_spaces_without_fee rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_parking_spaces_without_fee>
+    <norPark:no_of_electric_vehicle_chargers rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_electric_vehicle_chargers>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:no_of_handicap_parking_spaces rdf:datatype="http://www.w3.org/2001/XMLSchema#unsignedInt">0</norPark:no_of_handicap_parking_spaces>
+    <norPark:handicap_information xml:lang="no">Stedet har kun utleide plasser. </norPark:handicap_information>
+    <wikiprop:P625 rdf:datatype="http://www.opengis.net/ont/geosparql#wktLiteral">Point(62.469979 6.151932)</wikiprop:P625>
+    <norPark:activation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:37:18+00:00</norPark:activation_date>
+    <norPark:deactivation_date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2016-12-28T12:37:18+00:00</norPark:deactivation_date>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/ontology/parking#C930475610">
+    <wikiprop:P2333>930475610</wikiprop:P2333>
+    <rdfs:label>ÅLESUND PARKERING AS</rdfs:label>
+    <SDO:url>www.alesundparkering.no</SDO:url>
+    <norPark:active rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</norPark:active>
+    <SDO:ContactPoint rdf:nodeID="N472d1a37d858410292ae650b583968df"/>
+    <SDO:PostalAddress rdf:nodeID="N2d17d3bb581340cf9a81254ed30859a1"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfd2f52cc89854db9875c09f265938fd7">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Kipervikgata 29</SDO:streetAddress>
+    <SDO:postalCode>6003</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nfba69e4b22bf4cee951b8223d5ea72f5">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Sorenskriver Bulls gate 14</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N5a8bfb9936b14b53bc40c05abfe83637">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Skyttergata</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nf687fef732494f6ebe87cd8531a08757">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Keiser Wilhelms gate 4</SDO:streetAddress>
+    <SDO:postalCode>6003</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="Nc600bd29a853403b9d883b5ab9355969">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Tollbugata 2</SDO:streetAddress>
+    <SDO:postalCode>6002</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N2d17d3bb581340cf9a81254ed30859a1">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:postalCode>6004</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N472d1a37d858410292ae650b583968df">
+    <rdf:type rdf:resource="http://schema.org/ContactPoint"/>
+    <SDO:email>alesund.parkering@alesund.kommune</SDO:email>
+    <SDO:telephone>70 16 21 28</SDO:telephone>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="N74c39b9de6bb4ece88ac587bebb547c3">
+    <rdf:type rdf:resource="http://schema.org/PostalAddress"/>
+    <SDO:streetAddress>Klaus Nilsens gate 4</SDO:streetAddress>
+    <SDO:postalCode>6003</SDO:postalCode>
+    <SDO:addressLocality rdf:resource="http://www.wikidata.org/entity/Q62266"/>
+    <SDO:addressRegion rdf:resource="http://www.wikidata.org/entity/Q50627"/>
+    <SDO:addressCountry rdf:resource="http://www.wikidata.org/entity/Q20"/>
+  </rdf:Description>
+</rdf:RDF>
