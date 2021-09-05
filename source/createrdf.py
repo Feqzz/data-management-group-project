@@ -137,7 +137,7 @@ def addProviderTriples(provider):
     g.add( ( address, SDO.addressCountry, countryIri) )
 
 def addFacilityTriples(facility):
-    facilityUri = URIRef(pns + "L" + str(facility["id"]))
+    facilityUri = URIRef(pns + "F" + str(facility["id"]))
     municipalityCode = getMunicipalityCodeFromPostal(facility["aktivVersjon"]["postnummer"])
     providerUri = URIRef(pns + "C" + facility["parkeringstilbyderOrganisasjonsnummer"])
     locationInfo = getLocationUrisFromMunicipalityCode(municipalityCode)
@@ -177,7 +177,7 @@ def fillGraph(parkDict):
         for facility in provider["parkeringsomrader"]:
             addFacilityTriples(facility)
 
-    g.serialize(destination="tbl.ttl")
+    g.serialize(destination="parking.rdf", format="xml")
 
 def main():
     fillPostalDf()

@@ -39,9 +39,7 @@ norPark:L1227 rdfs:label "Meierikaia" ;
         "0"^^xsd:unsignedInt ;
     norPark:no_of_parking_spaces_with_fee 100 ;
     norPark:no_of_parking_spaces_without_fee 0 ;
-    wikiprop:P625 "Point(62.470561 6.162917)"^^geo:wktLiteral .
-
-norPark:L1228 rdfs:label "Brunholmkaia" ;
+    wikiprop:P625 "Point(62.470561 6.162917)"^^geo:wktLiteral .  norPark:L1228 rdfs:label "Brunholmkaia" ;
     SDO:PostalAddress [ a SDO:PostalAddress ;
             SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
             SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
