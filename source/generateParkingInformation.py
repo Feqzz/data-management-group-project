@@ -3,15 +3,15 @@ import requests
 import time
 
 def fetchParkingProviders():
-    parkingProvdersList = []
+    retList = []
     r = requests.get("https://www.vegvesen.no/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringstilbyder/",
             headers = {'accept': 'application/json'})
     jsonData = json.loads(r.text)
 
     for v in jsonData:
-        parkingProvidersList.append(v["organisasjonsnummer"])
+        retList.append(v["organisasjonsnummer"])
 
-    return parkingProviderList
+    return retList
 
 def createFullJsonFile():
     parkingProvidersList = fetchParkingProviders()
