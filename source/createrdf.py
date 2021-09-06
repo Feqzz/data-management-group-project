@@ -13,7 +13,7 @@ import chardet
 postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
 g = Graph()
-namespaceUrl = "http://tisk.ml/ontology/parking#"
+namespaceUrl = "http://tisk.ml/data/parking#"
 pns = Namespace(namespaceUrl)
 g.namespace_manager.bind("norPark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")
@@ -177,7 +177,7 @@ def fillGraph(parkDict):
         for facility in provider["parkeringsomrader"]:
             addFacilityTriples(facility)
 
-    g.serialize(destination="parking.rdf", format="xml")
+    g.serialize(destination="../tisk.ml/public/data/parking.rdf", format="xml")
 
 def main():
     fillPostalDf()
