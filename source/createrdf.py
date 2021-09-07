@@ -262,9 +262,6 @@ def fillGraph(parkDict):
             addFacilityTriples(i)
 
     #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
-    # g.serialize(destination="../tisk.ml/public/data/parking.rdf", format="xml")
-    # g.serialize(destination="parking.rdf", format="xml")
-    #g.serialize(destination="parking.ttl")
 
 def main():
     fillPostalDf()
@@ -274,14 +271,14 @@ def main():
     print("Adding ontology..")
     addOntology()
     print("Adding entities..")
-    #fillGraph(parkDict)
+    fillGraph(parkDict)
 
     #Save the file
     g.serialize(destination="parking.ttl")
-    os.chmod("parking.ttl", stat.S_IROTH)
+    os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
 
-    #g.serialize(destination="parking.rdf", format="xml")
-    #os.chmod("parking.rdf", stat.S_IROTH)
+    g.serialize(destination="parking.rdf", format="xml")
+    os.chmod("parking.rdf", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
 
     print("Done!")
 
