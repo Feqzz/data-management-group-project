@@ -274,14 +274,14 @@ def main():
     print("Adding ontology..")
     addOntology()
     print("Adding entities..")
-    #fillGraph(parkDict)
+    fillGraph(parkDict)
 
     #Save the file
-    g.serialize(destination="parking.ttl")
-    os.chmod("parking.ttl", stat.S_IROTH)
+    # g.serialize(destination="parking.ttl")
+    # os.chmod("parking.ttl", stat.S_IROTH)
 
-    #g.serialize(destination="parking.rdf", format="xml")
-    #os.chmod("parking.rdf", stat.S_IROTH)
+    g.serialize(destination="parking.rdf", format="xml")
+    # os.chmod("parking.rdf", stat.S_IROTH)
 
     print("Done!")
 
