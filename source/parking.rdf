@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#no_of_parking_spaces_without_fee">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>Number of parking spaces without a fee.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#StreetParking">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#no_of_handicap_parking_spaces">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>Number of handicap parking spaces.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#is_operated_by">
+    <rdf:type rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#Property"/>
+    <rdfs:label>Placeholder</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingLot"/>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingGarage"/>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#StreetParking"/>
+    <rdfs:range rdf:resource="http://tisk.ml/data/parking#ParkingCompany"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#deactivation_date">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>The date the Parking facility was deactivated.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#active">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>Tells if the parking facility is active or not.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#no_of_parking_spaces_with_fee">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>Number of parking spaces with a fee.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#handicap_information">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>Handicap information for the parking facility.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#no_of_electric_vehicle_chargers">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>Number of electric vehicle chargers.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#activation_date">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Datatype"/>
+    <rdfs:label>The date the Parking facility was activated.</rdfs:label>
+    <rdfs:domain rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#ParkingLot">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#ParkingCompany">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://schema.mobivoc.org/#ParkingFacility"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#ParkingFacility">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://tisk.ml/data/parking#ParkingCompany"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://tisk.ml/data/parking#ParkingGarage">
+    <rdf:type rdf:resource="http://www.w3.org/2000/01/rdf-schema#Class"/>
+    <rdfs:subClassOf rdf:resource="http://tisk.ml/data/parking#ParkingFacility"/>
+  </rdf:Description>
+</rdf:RDF>

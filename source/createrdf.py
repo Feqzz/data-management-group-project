@@ -85,28 +85,9 @@ def getGeoUri(lat, long):
 # url = "https://www.vegvesen.no/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringsomraade"
 
 def getParkingDict():
-    # url = "https://www.vegvesen.no/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringstilbyder/"
-    # r = requests.get(url, headers = {'accept': 'application/json'})
-    # data = r.json()
-
-    f = open("parkeringstilbyder.json")
-    data = json.load(f)
-
-    # print(json.dumps(data, indent=4))
-
-    return data
-
-def getFullParkingProvider(provider):
-    #Get from API
-    # url = "https://www.vegvesen.no/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringstilbyder/"
-    # r = requests.get(url+provider["organisasjonsnummer"], headers = {'accept': 'application/json'})
-    # data = r.json()
-
-    #Get from Local file
-    f = open("930475610.json")
+    f = open("parkingInformation.json")
     data = json.load(f)
     return data
-
 
 def addProviderTriples(provider):
     providerUri = URIRef(pns + "C" + provider["organisasjonsnummer"])
@@ -146,8 +127,8 @@ def addFacilityTriples(facility):
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
 
-    g.add( ( facilityUri, RDF.type, pns.CParkingLot) )
-    g.add( ( facilityUri, pns.Ois_operated_by, providerUri) )
+    #g.add( ( facilityUri, RDF.type, pns.CParkingLot) )
+    g.add( ( facilityUri, pns.is_operated_by, providerUri) )
     g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"] ) ) )
     address = BNode()
     g.add( ( facilityUri, SDO.PostalAddress, address ) )
@@ -171,35 +152,133 @@ def addFacilityTriples(facility):
         g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
 
 
+    parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
+    if (parkingType == "LANGS_KJOREBANE"):
+        g.add( (facilityUri, RDF.type, pns.StreetParking) )
+    elif (parkingType == "AVGRENSET_OMRADE"):
+        g.add( (facilityUri, RDF.type, pns.ParkingLot) )
+    elif (parkingType == "PARKERINGSHUS"):
+        g.add( (facilityUri, RDF.type, pns.ParkingGarage) )
+
+
+def addOntology():
+    uri = URIRef(pns + "is_operated_by")
+    g.add( (uri, RDF.type, RDF.Property ) )
+    g.add( (uri, RDFS.label, Literal("Placeholder") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    #g.add( (uri, RDFS.domain, URIRef(pns + "ParkingLot") ) )
+    #g.add( (uri, RDFS.domain, URIRef(pns + "ParkingGarage") ) )
+    #g.add( (uri, RDFS.domain, URIRef(pns + "StreetParking") ) )
+    g.add( (uri, RDFS.range, URIRef(pns + "ParkingCompany") ) )
+
+
+    uri = URIRef(pns + "active")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("Tells if the parking facility is active or not.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.boolean) )
+
+
+    uri = URIRef(pns + "deactivation_date")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("The date the Parking facility was deactivated.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.dateTime) )
+
+
+    uri = URIRef(pns + "activation_date")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("The date the Parking facility was activated.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.dateTime) )
+
+
+    uri = URIRef(pns + "handicap_information")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("Handicap information for the parking facility.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.string) )
+
+
+    uri = URIRef(pns + "no_of_parking_spaces_without_fee")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("Number of parking spaces without a fee.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.integer) )
+
+
+    uri = URIRef(pns + "no_of_parking_spaces_with_fee")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("Number of parking spaces with a fee.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.integer) )
+
+
+    uri = URIRef(pns + "no_of_handicap_parking_spaces")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("Number of handicap parking spaces.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.integer) )
+
+
+    uri = URIRef(pns + "no_of_electric_vehicle_chargers")
+    g.add( (uri, RDF.type, RDFS.Datatype) )
+    g.add( (uri, RDFS.label, Literal("Number of electric vehicle chargers.") ) )
+    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.range, XSD.integer) )
+
+
+    uri = URIRef(pns + "ParkingCompany")
+    g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingFacility") ) )
+
+
+    uri = URIRef(pns + "ParkingFacility")
+    g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingCompany") ) )
+
+
+    uri = URIRef(pns + "ParkingLot")
+    g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+
+
+    uri = URIRef(pns + "ParkingGarage")
+    g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+
+
+    uri = URIRef(pns + "StreetParking")
+    g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+
+
 def fillGraph(parkDict):
+    for v in parkDict:
+        addProviderTriples(v)
+        for i in v["parkeringsomrader"]:
+            addFacilityTriples(i)
 
-    for i in range(0, 1):
-        provider = getFullParkingProvider(parkDict[i])
-        addProviderTriples(provider)
-        for facility in provider["parkeringsomrader"]:
-            addFacilityTriples(facility)
-
-    lotUri = URIRef(pns + "C" + "ParkingLot")
-    g.add( (lotUri, RDF.type, RDFS.Class ) )
-
-#http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
-    operUri = URIRef(pns + "O" + "is_operated_by")
-    g.add( (operUri, RDF.type, RDF.Property ) )
-    g.add( (operUri, RDFS.label, Literal("something that is operated by something" ) ) )
-    g.add( (operUri, RDFS.domain, lotUri ) )
+    #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
     # g.serialize(destination="../tisk.ml/public/data/parking.rdf", format="xml")
     # g.serialize(destination="parking.rdf", format="xml")
-    g.serialize(destination="parking.ttl")
+    #g.serialize(destination="parking.ttl")
 
 def main():
     fillPostalDf()
     fillMunicipalityUriDf()
     parkDict = getParkingDict()
+
+    print("Adding ontology..")
+    addOntology()
+    print("Adding entities..")
     fillGraph(parkDict)
+
+    #Save the file
+    g.serialize(destination="parking.ttl")
+    #g.serialize(destination="parking.rdf", format="xml")
+    print("Done!")
+
 
 if __name__ == '__main__':
     main()
-
-
-
-
