@@ -1,6 +1,0 @@
-AddType application/rdf+xml .rdf
-
-RewriteEngine On
-RewriteBase /examples
-
-RewriteRule ^myontology$ myontology.rdf
