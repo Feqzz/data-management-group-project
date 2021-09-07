@@ -1,8 +1,8 @@
 from rdflib import Graph, Literal, RDF, URIRef, Namespace, BNode
 # rdflib knows about quite a few popular namespaces, like W3C ontologies, schema.org etc.
 from rdflib.namespace import CSVW, DC, DCAT, DCTERMS, DOAP, FOAF, ODRL2, ORG, OWL, \
-                           PROF, PROV, RDF, RDFS, SDO, SH, SKOS, SOSA, SSN, TIME, \
-                           VOID, XMLNS, XSD
+        PROF, PROV, RDF, RDFS, SDO, SH, SKOS, SOSA, SSN, TIME, \
+        VOID, XMLNS, XSD
 
 import requests
 import json
@@ -25,6 +25,31 @@ g.namespace_manager.bind("wikiprop", wikiprop)
 g.namespace_manager.bind("SDO", SDO)
 geo = Namespace("http://www.opengis.net/ont/geosparql#")
 g.namespace_manager.bind("geo", geo)
+
+def genereateIllegalXmlCharactersRegex():
+    import re
+    import sys
+
+    illegal_unichrs = [(0x00, 0x08), (0x0B, 0x0C), (0x0E, 0x1F),
+                        (0x7F, 0x84), (0x86, 0x9F),
+                        (0xFDD0, 0xFDDF), (0xFFFE, 0xFFFF)]
+
+    if (sys.maxunicode >= 0x10000):
+        illegal_unichrs.extend([(0x1FFFE, 0x1FFFF), (0x2FFFE, 0x2FFFF),
+                                (0x3FFFE, 0x3FFFF), (0x4FFFE, 0x4FFFF),
+                                (0x5FFFE, 0x5FFFF), (0x6FFFE, 0x6FFFF),
+                                (0x7FFFE, 0x7FFFF), (0x8FFFE, 0x8FFFF),
+                                (0x9FFFE, 0x9FFFF), (0xAFFFE, 0xAFFFF),
+                                (0xBFFFE, 0xBFFFF), (0xCFFFE, 0xCFFFF),
+                                (0xDFFFE, 0xDFFFF), (0xEFFFE, 0xEFFFF),
+                                (0xFFFFE, 0xFFFFF), (0x10FFFE, 0x10FFFF)])
+
+    illegal_ranges = [fr'{chr(low)}-{chr(high)}' for (low, high) in illegal_unichrs]
+    xml_illegal_character_regex = '[' + ''.join(illegal_ranges) + ']'
+    return re.compile(xml_illegal_character_regex)
+
+illegalXmlCharactersRegex = genereateIllegalXmlCharactersRegex()
+
 
 def fillMunicipalityUriDf():
     global municipalityUriDf
@@ -129,7 +154,6 @@ def addFacilityTriples(facility):
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
 
-    #g.add( ( facilityUri, RDF.type, pns.CParkingLot) )
     g.add( ( facilityUri, pns.is_operated_by, providerUri) )
     g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"] ) ) )
     address = BNode()
@@ -146,13 +170,15 @@ def addFacilityTriples(facility):
     g.add( ( facilityUri, pns.no_of_electric_vehicle_chargers, Literal( facility["aktivVersjon"]["antallLadeplasser"] ) ) )
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"] ) ) )
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"], datatype=XSD.unsignedInt ) ) )
-    g.add( ( facilityUri, pns.handicap_information, Literal( facility["aktivVersjon"]["vurderingForflytningshemmede"], lang="no") ) )
+
+    filteredHandicapInformation = illegalXmlCharactersRegex.sub('', str(facility["aktivVersjon"]["vurderingForflytningshemmede"]))
+
+    g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
     g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['breddegrad']} {facility['lengdegrad']})", datatype=geo.wktLiteral ) ) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
     if(facility["deaktivert"] != None):
         g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
-
 
     parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
     if (parkingType == "LANGS_KJOREBANE"):
@@ -168,9 +194,6 @@ def addOntology():
     g.add( (uri, RDF.type, RDF.Property ) )
     g.add( (uri, RDFS.label, Literal("Placeholder") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
-    #g.add( (uri, RDFS.domain, URIRef(pns + "ParkingLot") ) )
-    #g.add( (uri, RDFS.domain, URIRef(pns + "ParkingGarage") ) )
-    #g.add( (uri, RDFS.domain, URIRef(pns + "StreetParking") ) )
     g.add( (uri, RDFS.range, URIRef(pns + "ParkingCompany") ) )
 
 
@@ -232,12 +255,11 @@ def addOntology():
 
     uri = URIRef(pns + "ParkingCompany")
     g.add( (uri, RDF.type, RDFS.Class) )
-    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingFacility") ) )
 
 
     uri = URIRef(pns + "ParkingFacility")
     g.add( (uri, RDF.type, RDFS.Class) )
-    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingCompany") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingFacility") ) )
 
 
     uri = URIRef(pns + "ParkingLot")
@@ -262,6 +284,8 @@ def fillGraph(parkDict):
             addFacilityTriples(i)
 
     #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
+
+
 
 def main():
     fillPostalDf()
