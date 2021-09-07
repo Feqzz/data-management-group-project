@@ -181,14 +181,14 @@ def fillGraph(parkDict):
     lotUri = URIRef(pns + "C" + "ParkingLot")
     g.add( (lotUri, RDF.type, RDFS.Class ) )
 
-
+#http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
     operUri = URIRef(pns + "O" + "is_operated_by")
     g.add( (operUri, RDF.type, RDF.Property ) )
     g.add( (operUri, RDFS.label, Literal("something that is operated by something" ) ) )
     g.add( (operUri, RDFS.domain, lotUri ) )
     # g.serialize(destination="../tisk.ml/public/data/parking.rdf", format="xml")
-    g.serialize(destination="parking.rdf", format="xml")
-    # g.serialize(destination="parking.ttl")
+    # g.serialize(destination="parking.rdf", format="xml")
+    g.serialize(destination="parking.ttl")
 
 def main():
     fillPostalDf()

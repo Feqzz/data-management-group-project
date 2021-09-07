@@ -61,23 +61,58 @@ Things that can be done right now:
 
 
 
+	Presentation:
+
+		Front-page:
+			Done, finn logo
+		Introduction:
+
+			
+			Background on linked data
+			Norwegian linked data, semicolon
+
+			What do we want to do?
+			Why do we want to do this?
+
+		Requirements:
+			Contribute to linked data
+			5 stars
 
 
 
+		Implementation:
+
+			Onotologien tegning
+			Graf av av en parkeringsplass
+
+			Technologies used, system architecture
+			Data collection process
+
+			had to figure out
+			Ikke lage duplikat IRI'er
 
 
+		Demonstration:
+			Show sparql queries, our own endpoint
+			Enter website
+			Click back and forth
+			Image of our graph
 
+			Show accept letter from Linked open data cloud, congratulating us on five stars
 
+		Conclusion:
+			Ja, vi har bidratt til linked open data, men dessverre så viste det seg at dette er ganske dødt.
+			Derfor var det utfordrende. 
 
+			Alt teknologi er knyttet til Java omtrent, noe vi ikke liker. Derfor ble det utfordrende. 
 
+			Alt er nøyaktig 10 år gammelt. 
 
+			Lav modningsgrad på teknologi.
 
+			Men nå kan du gjøre queries på parkeringsplasser
 
-
-
-
-
-
+			
 
 			
 	Ideas for queries:
@@ -96,17 +131,38 @@ Things that can be done right now:
 		Fremtidsrettet
 
 
+
+
+
 	Figure out:
-		What goes in which file, owl/rdf?
-		What is hosted where?
-
-
 		Kjøre periodisk:
 			Airflow?
-			Ikke lage duplikat IRI'er
 			Oppdatere information
 
 
+	Kent:
+		Bli kvitt spm tegn hvis jeg klarer
+		Få kjøre fuseki-server uten at den krasher
+		Reverse proxy på Pubby, public website
+		Sett defualt node i pubby til å være ParkingFacility eller ParkingCompany
+		Prøv å legge til label eller comment i pubby
+		Sette opp Airflow:
+			Generate json
+			Create rdf
+			restart fuseki
+			restart pubby
+	Thomas:
+		prøve finne api på bilder
+		Mest mulig zoom, helst satelitt
+		Prøve å legge til dette som trippel i graph (createrdf.py), basert på koordinater
+
+	Stian:
+		Endre createrdf til å loope gjennom json
+		Lage klasser og properties i createrdf
+		Begynne på presentasjon, sette opp alle slidene vi tror vi trenger
+		Lage airflow figur
+		Legge til is_active igjen på facility
+		Sørg for at de som er aktive ikke har en attributt deactivation date
 
 
 
@@ -116,10 +172,5 @@ Things that can be done right now:
 
 
 
-Questions for Vimala:
-	Hvor bundet er vi til formatet?
-	Kan vi legge til kapitler?
-	TOC, Glossery, list of abbrev
 
-	Hva synes du om scopet på oppgaven? Stort nok? Lite nok?
-			
+
