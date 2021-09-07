@@ -1,0 +1,312 @@
+@prefix SDO: <http://schema.org/> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix norPark: <http://tisk.ml/data/parking#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix wikiprop: <https://www.wikidata.org/wiki/Property:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+norPark:CParkingLot a rdfs:Class .
+
+norPark:F1223 a norPark:CParkingLot ;
+    rdfs:label "Rutebilstasjon vest" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6003" ;
+            SDO:streetAddress "Keiser Wilhelms gate 4" ] ;
+    norPark:activation_date "2016-12-28T12:37:18+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-28T12:37:18+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "Stedet har kun utleide plasser. "@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 66 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.469979 6.151932)"^^geo:wktLiteral .
+
+norPark:F1227 a norPark:CParkingLot ;
+    rdfs:label "Meierikaia" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6003" ;
+            SDO:streetAddress "Klaus Nilsens gate 4" ] ;
+    norPark:activation_date "2016-12-28T12:40:41+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-28T12:40:41+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "Kun utleide plasser på dette området. "@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 100 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.470561 6.162917)"^^geo:wktLiteral .
+
+norPark:F1228 a norPark:CParkingLot ;
+    rdfs:label "Brunholmkaia" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6004" ;
+            SDO:streetAddress "Fløttmanngata 2" ] ;
+    norPark:activation_date "2016-12-28T12:42:37+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-28T12:42:37+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "Kun utleide plasser på dette området. "@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 30 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.473399 6.153237)"^^geo:wktLiteral .
+
+norPark:F1241 a norPark:CParkingLot ;
+    rdfs:label "Hjelsetgården" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Sorenskriver Bulls gate 14" ] ;
+    norPark:activation_date "2016-12-28T12:28:57+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-28T12:28:57+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "Går inn i sentrumsplanen og har HC-plasser og ladeplasser i forbindelse med denne. "@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 100 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.476296 6.158263)"^^geo:wktLiteral .
+
+norPark:F1244 a norPark:CParkingLot ;
+    rdfs:label "Hjelsetgården " ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Sorenskriver Bulls gate 33" ] ;
+    norPark:activation_date "2018-01-08T13:10:17+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """45 plasser er reservert bobil med plasser dimensjonert for slike.
+75 plasser er utleid.
+25 plasser er vilkårsparkering.
+
+Området inngår i byplanen og har HC-plasser og ladeplasser i forbindelse med denne.  Det er ikke tilgjengelig 400V på stedet."""@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 145 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.476869 6.161051)"^^geo:wktLiteral .
+
+norPark:F1245 a norPark:CParkingLot ;
+    rdfs:label "Rutebilstasjon øst" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6003" ;
+            SDO:streetAddress "Keiser Wilhelms gate 12" ] ;
+    norPark:activation_date "2016-12-28T12:39:05+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-28T12:39:05+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "Alle plassene på stedet er utleid. "@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 82 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.470497 6.155161)"^^geo:wktLiteral .
+
+norPark:F1247 a norPark:CParkingLot ;
+    rdfs:label "Brunholmen p-hus" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6004" ;
+            SDO:streetAddress "Brunholmgata 6" ] ;
+    norPark:activation_date "2018-01-08T13:11:46+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """50 av plassene i huset er reserverte plasser, 55 er avgiftsbelagte. 
+
+Det er ikke tilgjengelig 400V i bygget, vi vurderer enklere ladestasjoner her.
+"""@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 2,
+        "2"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 105 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.473175 6.152541)"^^geo:wktLiteral .
+
+norPark:F39913 a norPark:CParkingLot ;
+    rdfs:label "Gamle Rollonbana" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Skyttergata" ] ;
+    norPark:activation_date "2021-05-28T07:16:47+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """Det er ikke anlagt ladeplasser på stedet da det ikke er strøm nok i området og kostnadene blir uforholdsmessig høye.
+Vi har plassen på dispensasjon. """@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 4,
+        "4"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 75 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.476489 6.163451)"^^geo:wktLiteral .
+
+norPark:F937 a norPark:CParkingLot ;
+    rdfs:label "Sankten" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Notenesgata 13" ] ;
+    norPark:activation_date "2018-01-12T14:11:26+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """Vil bli opprettet HC plasser i 2018.
+
+Nytt legesenter rundt hjørnet gjør behovet større en det har vert tidligere. 
+Det er plasser tett på dette området også. En må derfor se dette området i sammenheng med gateparkering i Ålesund sentrum."""@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 4 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 62 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.472731 6.155752)"^^geo:wktLiteral .
+
+norPark:F948 a norPark:CParkingLot ;
+    rdfs:label "Gateparkering Ålesund" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Korsegata" ] ;
+    norPark:activation_date "2020-02-14T08:05:52+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """Det er avsatt et tilstrekkelig antall plasser i Ålesund sentrum, i tillegg kommer gratisplasser i P-hus tilhørende vårt datterselskap Sunnmøre parkering AS.
+
+Det er Ålesund kommune som har skiltmyndighet, de har vurdert at det er nok plasser tilgjengelig i dag - men vurderer å sette en makstid på 2 timer.
+Ålesund parkering AS ønsker å se gateparkering i Ålesund sentrum under ett.
+
+For å se plassering av plasser zoom inn på kartet."""@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 6 ;
+    norPark:no_of_handicap_parking_spaces 31,
+        "31"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 442 ;
+    norPark:no_of_parking_spaces_without_fee 25 ;
+    wikiprop:P625 "Point(62.471776 6.155803)"^^geo:wktLiteral .
+
+norPark:F951 a norPark:CParkingLot ;
+    rdfs:label "Nedre utstillingsplass" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6003" ;
+            SDO:streetAddress "Kipervikgata 29" ] ;
+    norPark:activation_date "2021-07-08T09:16:11+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """Vil bli opprettet HC plasser i 2017.
+
+Dette området er innlemmet i soneparkering for Ålesund sentrum. Mange av dagens plasser vil derfor bli overtatt av fastboende, det er i dag et nytt privat p-hus med 940 plasser (Aksla parkering) i fjellet under denne plassen. 
+
+"""@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 2 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 38 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.472323 6.164368)"^^geo:wktLiteral .
+
+norPark:F953 a norPark:CParkingLot ;
+    rdfs:label "Skateflua 2" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Tollbugata 2" ] ;
+    norPark:activation_date "2016-12-22T08:06:08+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-22T08:06:08+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "HC plasser i tilknytning til området"@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 10 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.474987 6.154417)"^^geo:wktLiteral .
+
+norPark:F955 a norPark:CParkingLot ;
+    rdfs:label "Skutvika" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6005" ;
+            SDO:streetAddress "Kjøpmannsgata 6" ] ;
+    norPark:activation_date "2018-01-08T13:09:07+00:00"^^xsd:dateTime ;
+    norPark:handicap_information """Store gode plasser, ingen avgift.
+
+Tidsbegrensning vil bli vurdert i samarbeid med Ålesund kommune. Siden tingretten ble flyttet til sentrum har behovet endret seg.
+
+Plassene blir skiltet og merket når veibanen er tørr igjen etter vinteren.
+
+Det er ikke satt opp ladeplasser på området, vi ønsker å se dette i sammenheng med Torghallen p-hus. Der er det tilgjengelig 400V. """@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 0 ;
+    norPark:no_of_parking_spaces_without_fee 88 ;
+    wikiprop:P625 "Point(62.469936 6.134986)"^^geo:wktLiteral .
+
+norPark:F961 a norPark:CParkingLot ;
+    rdfs:label "Skateflua" ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6002" ;
+            SDO:streetAddress "Skaregata 1A" ] ;
+    norPark:activation_date "2016-12-22T08:00:05+00:00"^^xsd:dateTime ;
+    norPark:deactivation_date "2016-12-22T08:00:05+00:00"^^xsd:dateTime ;
+    norPark:handicap_information "HC plasser i tilknytning til stedet"@no ;
+    norPark:is_operated_by norPark:C930475610 ;
+    norPark:no_of_electric_vehicle_chargers 0 ;
+    norPark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norPark:no_of_parking_spaces_with_fee 15 ;
+    norPark:no_of_parking_spaces_without_fee 0 ;
+    wikiprop:P625 "Point(62.474309 6.155262)"^^geo:wktLiteral .
+
+norPark:Ois_operated_by a rdf:Property ;
+    rdfs:label "something that is operated by something" ;
+    rdfs:domain norPark:CParkingLot .
+
+norPark:C930475610 rdfs:label "ÅLESUND PARKERING AS" ;
+    SDO:ContactPoint [ a SDO:ContactPoint ;
+            SDO:email "alesund.parkering@alesund.kommune" ;
+            SDO:telephone "70 16 21 28" ] ;
+    SDO:PostalAddress [ a SDO:PostalAddress ;
+            SDO:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            SDO:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            SDO:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            SDO:postalCode "6004" ] ;
+    SDO:url "www.alesundparkering.no" ;
+    norPark:active true ;
+    wikiprop:P2333 "930475610" .
+

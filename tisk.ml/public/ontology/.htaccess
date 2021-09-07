@@ -1,0 +1,5 @@
+AddType application/rdf+xml .owl
+
+RewriteEngine On
+RewriteBase /ontology
+RewriteRule ^parking$ parking.owl

@@ -12,10 +12,10 @@ import chardet
 
 postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
-g = Graph()
 namespaceUrl = "http://tisk.ml/data/parking#"
+g = Graph()
 pns = Namespace(namespaceUrl)
-g.namespace_manager.bind("norPark", pns)
+# g.namespace_manager.bind("norPark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")
 g.namespace_manager.bind("wikiprop", wikiprop)
 # schemaorg = Namespace("http://schema.org/")
@@ -145,7 +145,8 @@ def addFacilityTriples(facility):
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
 
-    g.add( ( facilityUri, pns.is_operated_by, providerUri) )
+    g.add( ( facilityUri, RDF.type, pns.CParkingLot) )
+    g.add( ( facilityUri, pns.Ois_operated_by, providerUri) )
     g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"] ) ) )
     address = BNode()
     g.add( ( facilityUri, SDO.PostalAddress, address ) )
@@ -177,7 +178,17 @@ def fillGraph(parkDict):
         for facility in provider["parkeringsomrader"]:
             addFacilityTriples(facility)
 
-    g.serialize(destination="../tisk.ml/public/data/parking.rdf", format="xml")
+    lotUri = URIRef(pns + "C" + "ParkingLot")
+    g.add( (lotUri, RDF.type, RDFS.Class ) )
+
+
+    operUri = URIRef(pns + "O" + "is_operated_by")
+    g.add( (operUri, RDF.type, RDF.Property ) )
+    g.add( (operUri, RDFS.label, Literal("something that is operated by something" ) ) )
+    g.add( (operUri, RDFS.domain, lotUri ) )
+    # g.serialize(destination="../tisk.ml/public/data/parking.rdf", format="xml")
+    g.serialize(destination="parking.rdf", format="xml")
+    # g.serialize(destination="parking.ttl")
 
 def main():
     fillPostalDf()

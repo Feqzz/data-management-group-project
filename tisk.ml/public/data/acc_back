@@ -1,0 +1,5 @@
+
+RewriteRule ^parking$ parking.rdf
+RewriteEngine On
+RewriteBase /data
+RewriteRule ^parking$ parking.rdf
