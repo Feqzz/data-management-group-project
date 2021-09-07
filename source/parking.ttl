@@ -6,6 +6,8 @@
 @prefix wikiprop: <https://www.wikidata.org/wiki/Property:> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
+ns1:licence rdf:is "http://createcommons.tk/licence"
+
 ns1:CParkingLot a rdfs:Class .
 
 ns1:F1223 a ns1:CParkingLot ;

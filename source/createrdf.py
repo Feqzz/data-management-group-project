@@ -14,6 +14,7 @@ postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
 namespaceUrl = "http://tisk.ml/data/parking#"
 g = Graph()
+
 pns = Namespace(namespaceUrl)
 # g.namespace_manager.bind("norPark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")

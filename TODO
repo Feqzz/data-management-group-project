@@ -27,6 +27,8 @@ Things that can be done right now:
 			how choose System architecture
 
 			Ontology architecture
+				reusing existing vocabularies
+
 
 		Resultater	
 
@@ -34,7 +36,12 @@ Things that can be done right now:
 			Conclude that the semantic web is unfortunately dead
 			Talk about challenges
 				Semantic web is dead.
+				Show graph from stackoverflow.com
 				Hard, difficult to link with existing data
+
+			Future proof
+			Automatic update with airflow
+				
 
 
 		References:
@@ -112,6 +119,12 @@ Things that can be done right now:
 
 			Men nå kan du gjøre queries på parkeringsplasser
 
+			Five star requirement walkthrough
+
+			Klarte ikke komme med i grafen, fordi den oppdateres skjeldent
+
+			Men vi har submitta
+
 			
 
 			
@@ -151,12 +164,17 @@ Things that can be done right now:
 			Create rdf
 			restart fuseki
 			restart pubby
+
+
+		Skriv Technology choices og Architecture, prøv å lage figur
+
 	Thomas:
 		prøve finne api på bilder
 		Mest mulig zoom, helst satelitt
 		Prøve å legge til dette som trippel i graph (createrdf.py), basert på koordinater
 
 	Stian:
+		Virtual env
 		Endre createrdf til å loope gjennom json
 		Lage klasser og properties i createrdf
 		Begynne på presentasjon, sette opp alle slidene vi tror vi trenger
@@ -164,8 +182,8 @@ Things that can be done right now:
 		Legge til is_active igjen på facility
 		Sørg for at de som er aktive ikke har en attributt deactivation date
 
-
-
+	En bør undersøke dette:
+	 When modeling Linked Data metadata, it is a best practice to include the MIME type, publishing organization and/or agency, creation date, modification date, version, frequency of updates, and contact email address, if this information is available and appropriate to the data. In subsequent sections we outline guidance for the use of vocabularies, as well as, a vocabulary "checklist" to assist in the modeling process. 
 
 
 
