@@ -146,7 +146,7 @@ def addFacilityTriples(facility):
     g.add( ( facilityUri, pns.no_of_electric_vehicle_chargers, Literal( facility["aktivVersjon"]["antallLadeplasser"] ) ) )
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"] ) ) )
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"], datatype=XSD.unsignedInt ) ) )
-    g.add( ( facilityUri, pns.handicap_information, Literal( facility["aktivVersjon"]["vurderingForflytningshemmede"], lang="no") ) )
+    # g.add( ( facilityUri, pns.handicap_information, Literal( facility["aktivVersjon"]["vurderingForflytningshemmede"], lang="no") ) )
     g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['breddegrad']} {facility['lengdegrad']})", datatype=geo.wktLiteral ) ) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
@@ -277,8 +277,9 @@ def main():
     g.serialize(destination="parking.ttl")
     os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
 
-    g.serialize(destination="parking.rdf", format="xml")
-    os.chmod("parking.rdf", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
+    rdfPath = "../tisk.ml/public/data/parking.rdf"
+    g.serialize(destination=rdfPath, format="xml")
+    os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 
     print("Done!")
 
