@@ -1,5 +1,5 @@
 Owlready2==0.33
-pandas==1.1.2
 requests==2.22.0
-rdflib==6.0.0
 chardet==3.0.4
+pandas==1.1.2
+rdflib==6.0.0
