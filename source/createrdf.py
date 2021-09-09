@@ -323,8 +323,8 @@ def main():
     fillGraph(parkDict)
 
     #Save the file
-    g.serialize(destination="parking.ttl")
-    os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
+    # g.serialize(destination="parking.ttl")
+    # os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
 
     rdfPath = "../tisk.ml/public/data/parking.rdf"
     # rdfPath = "../tisk.ml/public/data/small_parking.rdf"
