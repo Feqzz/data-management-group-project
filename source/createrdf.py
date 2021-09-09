@@ -19,6 +19,7 @@ namespaceUrl = "http://norpark.ml/"
 # namespaceUrl = "http://tisk.ml/data/parking#"
 # namespaceUrl = "http://tisk.ml/data/parking/"
 # namespaceUrl = "http://data.example.org/resource/"
+# namespaceUrl = "http://localhost:8080/lodview/"
 g = Graph()
 
 pns = Namespace(namespaceUrl)
@@ -26,9 +27,11 @@ g.namespace_manager.bind("norpark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")
 g.namespace_manager.bind("wikiprop", wikiprop)
 # schemaorg = Namespace("http://schema.org/")
-g.namespace_manager.bind("schema", SDO)
-geo = Namespace("http://www.opengis.net/ont/geosparql#")
-g.namespace_manager.bind("geog", geo)
+g.namespace_manager.bind("schema-org", SDO)
+# geo = Namespace("http://www.opengis.net/ont/geosparql#")
+# g.namespace_manager.bind("geog", geo)
+geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
+g.namespace_manager.bind("geo", geo)
 
 def genereateIllegalXmlCharactersRegex():
     import re
@@ -109,9 +112,6 @@ def getMunicipalityCodeFromPostal(postalCode):
 def getLocationUrisFromMunicipalityCode(code):
     return municipalityUriDf.loc[municipalityUriDf['municipalityCode.value'] == code].iloc[0]
 
-def getGeoUri(lat, long):
-    geouri = f"https://geohack.toolforge.org/geohack.php?params={lat}_N_{long}_E_globe:earth&language=en"
-    return geouri
 
 # url = "https://www.vegvesen.no/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringsomraade"
 
@@ -182,7 +182,8 @@ def addFacilityTriples(facility):
     if (filteredHandicapInformation != "None"):
         g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
 
-    g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['breddegrad']} {facility['lengdegrad']})", datatype=geo.wktLiteral ) ) )
+    g.add( ( facilityUri, geo.lat, Literal(facility['breddegrad'], datatype=XSD.float)) )
+    g.add( ( facilityUri, geo.long, Literal(facility['lengdegrad'], datatype=XSD.float)) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
     if(facility["deaktivert"] != None):
