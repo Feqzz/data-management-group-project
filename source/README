@@ -1,0 +1,27 @@
+Hello Vimala!
+
+As we have used Linux when creating this project, this guide is be created for Linux:
+
+Dependencies: 
+* python3
+
+We have written both of our scripts with Python. To execute the scripts, we recommend creating a virtual environment.
+
+Create and activate a new virtual environment `my-venv`:
+$ python3 -m venv my-venv
+$ source my-venv/bin/activate
+
+
+To install the dependencies required to execute the Python scripts:
+$ pip3 install -r requirements.txt
+
+
+The JSON files that we fetch from Statens vegvesen are not complete, so we need to run a script that fetches all the information that we need and creates one large JSON file. To generate the JSON file:
+$ python3 generateParkingInformation.py
+
+
+To generate the RDF triples alongside our parking ontology, run this command:
+$ python3 createrdf.py
+
+
+To setup the webpage and host the RDF triples, we have created configuration files for third party software.
