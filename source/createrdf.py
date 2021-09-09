@@ -14,17 +14,21 @@ import stat
 
 postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
-namespaceUrl = "http://tisk.ml/data/parking#"
+# namespaceUrl = "http://norpark.ml/#"
+namespaceUrl = "http://norpark.ml/"
+# namespaceUrl = "http://tisk.ml/data/parking#"
+# namespaceUrl = "http://tisk.ml/data/parking/"
+# namespaceUrl = "http://data.example.org/resource/"
 g = Graph()
 
 pns = Namespace(namespaceUrl)
-# g.namespace_manager.bind("norPark", pns)
+g.namespace_manager.bind("norpark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")
 g.namespace_manager.bind("wikiprop", wikiprop)
 # schemaorg = Namespace("http://schema.org/")
 g.namespace_manager.bind("SDO", SDO)
 geo = Namespace("http://www.opengis.net/ont/geosparql#")
-g.namespace_manager.bind("geo", geo)
+g.namespace_manager.bind("geog", geo)
 
 def genereateIllegalXmlCharactersRegex():
     import re
@@ -281,6 +285,7 @@ def fillGraph(parkDict):
         addProviderTriples(v)
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
+        break;
 
     #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
 
@@ -301,6 +306,7 @@ def main():
     os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
 
     rdfPath = "../tisk.ml/public/data/parking.rdf"
+    # rdfPath = "../tisk.ml/public/data/small_parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 
