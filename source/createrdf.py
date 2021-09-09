@@ -14,17 +14,21 @@ import stat
 
 postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
-namespaceUrl = "http://tisk.ml/data/parking#"
+# namespaceUrl = "http://norpark.ml/#"
+namespaceUrl = "http://norpark.ml/"
+# namespaceUrl = "http://tisk.ml/data/parking#"
+# namespaceUrl = "http://tisk.ml/data/parking/"
+# namespaceUrl = "http://data.example.org/resource/"
 g = Graph()
 
 pns = Namespace(namespaceUrl)
-# g.namespace_manager.bind("norPark", pns)
+g.namespace_manager.bind("norpark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")
 g.namespace_manager.bind("wikiprop", wikiprop)
 # schemaorg = Namespace("http://schema.org/")
 g.namespace_manager.bind("SDO", SDO)
 geo = Namespace("http://www.opengis.net/ont/geosparql#")
-g.namespace_manager.bind("geo", geo)
+g.namespace_manager.bind("geog", geo)
 
 def genereateIllegalXmlCharactersRegex():
     import re
@@ -172,82 +176,100 @@ def addFacilityTriples(facility):
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"], datatype=XSD.unsignedInt ) ) )
 
     filteredHandicapInformation = illegalXmlCharactersRegex.sub('', str(facility["aktivVersjon"]["vurderingForflytningshemmede"]))
-    g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
+    if (filteredHandicapInformation != "None"):
+        g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
+
     g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['breddegrad']} {facility['lengdegrad']})", datatype=geo.wktLiteral ) ) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
     if(facility["deaktivert"] != None):
         g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
 
+    comment = str(facility["aktivVersjon"]["navn"]) + " is a "
     parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
     if (parkingType == "LANGS_KJOREBANE"):
         g.add( (facilityUri, RDF.type, pns.StreetParking) )
+        comment += "street parking place"
     elif (parkingType == "AVGRENSET_OMRADE"):
         g.add( (facilityUri, RDF.type, pns.ParkingLot) )
+        comment += "parking lot"
     elif (parkingType == "PARKERINGSHUS"):
         g.add( (facilityUri, RDF.type, pns.ParkingGarage) )
+        comment += "parking garage"
+
+    comment += " in Norway."
+    g.add( ( (facilityUri, RDFS.comment, Literal(comment, lang="en") ) ) )
 
 
 def addOntology():
     uri = URIRef(pns + "is_operated_by")
     g.add( (uri, RDF.type, RDF.Property ) )
-    g.add( (uri, RDFS.label, Literal("Placeholder") ) )
+    g.add( (uri, RDFS.label, Literal("is operated by", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("A parking facility is operated by a parking company.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, URIRef(pns + "ParkingCompany") ) )
 
 
     uri = URIRef(pns + "active")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("Tells if the parking facility is active or not.") ) )
+    g.add( (uri, RDFS.label, Literal("active", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("Tells if the parking facility is active or not.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.boolean) )
 
 
     uri = URIRef(pns + "deactivation_date")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("The date the Parking facility was deactivated.") ) )
+    g.add( (uri, RDFS.label, Literal("deactivation date", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("The date the Parking facility was deactivated.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.dateTime) )
 
 
     uri = URIRef(pns + "activation_date")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("The date the Parking facility was activated.") ) )
+    g.add( (uri, RDFS.label, Literal("activation date", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("The date the Parking facility was activated.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.dateTime) )
 
 
     uri = URIRef(pns + "handicap_information")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("Handicap information for the parking facility.") ) )
+    g.add( (uri, RDFS.label, Literal("handicap information", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("Handicap information for the parking facility.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.string) )
 
 
     uri = URIRef(pns + "no_of_parking_spaces_without_fee")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("Number of parking spaces without a fee.") ) )
+    g.add( (uri, RDFS.label, Literal("number of parking spaces without fee", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("Number of parking spaces without a fee.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.integer) )
 
 
     uri = URIRef(pns + "no_of_parking_spaces_with_fee")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("Number of parking spaces with a fee.") ) )
+    g.add( (uri, RDFS.label, Literal("number of parking spaces with fee", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("Number of parking spaces with a fee.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.integer) )
 
 
     uri = URIRef(pns + "no_of_handicap_parking_spaces")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("Number of handicap parking spaces.") ) )
+    g.add( (uri, RDFS.label, Literal("number of handicap parking spaces.", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("Number of handicap parking spaces.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.integer) )
 
 
     uri = URIRef(pns + "no_of_electric_vehicle_chargers")
     g.add( (uri, RDF.type, RDFS.Datatype) )
-    g.add( (uri, RDFS.label, Literal("Number of electric vehicle chargers.") ) )
+    g.add( (uri, RDFS.label, Literal("number of electric vehicle chargers", lang="en") ) )
+    g.add( (uri, RDFS.comment, Literal("Number of electric vehicle chargers available at the parking facility.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.integer) )
 
@@ -281,6 +303,7 @@ def fillGraph(parkDict):
         addProviderTriples(v)
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
+        break;
 
     #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
 
@@ -301,6 +324,7 @@ def main():
     os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
 
     rdfPath = "../tisk.ml/public/data/parking.rdf"
+    # rdfPath = "../tisk.ml/public/data/small_parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 
