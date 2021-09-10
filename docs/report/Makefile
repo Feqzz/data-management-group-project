@@ -1,10 +1,9 @@
-CC=pdflatex
-NAME=main
+.PHONY: build clean
 
 all: build
 
 clean:
-	@rm -rf *.run.xml *.bcf *.aux *.log *.out *.pdf *.toc chapters/*.aux configuration/*.aux
+	@rm -rf *.bbl *.blg *.run.xml *.bcf *.aux *.log *.out *.pdf *.toc chapters/*.aux configuration/*.aux
 
-build:
-	$(CC) $(NAME)
+build: main.tex
+	pdflatex $< && biber main && pdflatex $<

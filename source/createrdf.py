@@ -11,6 +11,7 @@ import io
 import chardet
 import os
 import stat
+import pathlib
 
 postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
@@ -93,18 +94,19 @@ def fillMunicipalityUriDf():
     #     json.dump(data, json_file)
 
     # from file
-    with open("query.json") as json_file:
+    queryFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/query.json"
+    with open(queryFilePath) as json_file:
         data = json.load(json_file)
 
     municipalityUriDf = pd.json_normalize(data["results"]["bindings"])
 
 def fillPostalDf():
     global postalDf
-    url = "https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/_/attachment/download/7f0186f6-cf90-4657-8b5b-70707abeb789:676b821de9cff02aaa7a009daf0af8a2a346a1bc/Postnummerregister-ansi.txt"
-    # url = "post.txt"
+    postalDataPath = "https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/_/attachment/download/7f0186f6-cf90-4657-8b5b-70707abeb789:676b821de9cff02aaa7a009daf0af8a2a346a1bc/Postnummerregister-ansi.txt"
+    # postalDataPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/post.txt"
 
     header_list = ["postcode", "postplace", "citycode", "city", "category"]
-    postalDf = pd.read_csv(url, encoding='ISO-8859-1', sep='\t', names=header_list, dtype=str)
+    postalDf = pd.read_csv(postalDataPath, encoding='ISO-8859-1', sep='\t', names=header_list, dtype=str)
 
 def getMunicipalityCodeFromPostal(postalCode):
     return postalDf.loc[postalDf['postcode'] == postalCode].iloc[0]['citycode']
@@ -116,7 +118,8 @@ def getLocationUrisFromMunicipalityCode(code):
 # url = "https://www.vegvesen.no/ws/no/vegvesen/veg/parkeringsomraade/parkeringsregisteret/v1/parkeringsomraade"
 
 def getParkingDict():
-    f = open("parkingInformation.json")
+    parkingInformationFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parkingInformation.json"
+    f = open(parkingInformationFilePath)
     data = json.load(f)
     return data
 
@@ -189,20 +192,26 @@ def addFacilityTriples(facility):
     if(facility["deaktivert"] != None):
         g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
 
-    comment = str(facility["aktivVersjon"]["navn"]) + " is a "
+    commentEn = str(facility["aktivVersjon"]["navn"]) + " is a "
+    commentNo = str(facility["aktivVersjon"]["navn"]) + " er "
     parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
     if (parkingType == "LANGS_KJOREBANE"):
         g.add( (facilityUri, RDF.type, pns.StreetParking) )
-        comment += "street parking place"
+        commentEn += "street parking place"
+        commentNo += "en gateparkering"
     elif (parkingType == "AVGRENSET_OMRADE"):
         g.add( (facilityUri, RDF.type, pns.ParkingLot) )
-        comment += "parking lot"
+        commentEn += "parking lot"
+        commentNo += "en parkeringsplass"
     elif (parkingType == "PARKERINGSHUS"):
         g.add( (facilityUri, RDF.type, pns.ParkingGarage) )
-        comment += "parking garage"
+        commentEn += "parking garage"
+        commentNo += "et parkeringshus"
 
-    comment += " in Norway."
-    g.add( ( (facilityUri, RDFS.comment, Literal(comment, lang="en") ) ) )
+    commentEn += " in Norway."
+    commentNo += " i Norge."
+    g.add( ( (facilityUri, RDFS.comment, Literal(commentEn, lang="en") ) ) )
+    g.add( ( (facilityUri, RDFS.comment, Literal(commentNo, lang="no") ) ) )
 
 
 def addOntology():
@@ -309,9 +318,6 @@ def fillGraph(parkDict):
             addFacilityTriples(i)
         # break;
 
-    #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
-
-
 
 def main():
     fillPostalDf()
@@ -323,12 +329,7 @@ def main():
     print("Adding entities..")
     fillGraph(parkDict)
 
-    #Save the file
-    # g.serialize(destination="parking.ttl")
-    # os.chmod("parking.ttl", stat.S_IWUSR | stat.S_IRUSR | stat.S_IROTH)
-
-    rdfPath = "../tisk.ml/public/data/parking.rdf"
-    # rdfPath = "../tisk.ml/public/data/small_parking.rdf"
+    rdfPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 

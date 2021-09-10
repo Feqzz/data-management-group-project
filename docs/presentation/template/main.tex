@@ -50,6 +50,32 @@
 		\end{figure}
 	\end{frame}
 
+	\subsection{Project Idea}
+	\begin{frame}{Project Idea}
+		\begin{itemize}
+			\item Find norwegian open data that is not on the semantic web.
+			\item Create an ontology.
+			\item Link the data with existing linked open data.
+			\item Publish it and get Tim Berners-Lee five stars.
+		\end{itemize}
+	\end{frame}
+
+	\subsection{Data}
+	\begin{frame}{Data}
+		\begin{tikzpicture}[overlay,remember picture]
+			\node[anchor=south east,xshift=-35pt,yshift=135pt]
+			at (current page.south east) {
+				\includegraphics[width=35mm]{resources/sv.jpg}
+				};
+		\end{tikzpicture}%
+		\begin{itemize}
+			\item Parking data from Statens vegvesen\\
+				(Norwegian Public Roads Administration).
+			\item Provides data for 10638 parking facilities.
+			\item Publicly available.
+		\end{itemize}
+	\end{frame}
+
 	\section{Implementation}
 	\subsection{The Ontology}
 	\begin{frame}{The Ontology}
@@ -70,20 +96,14 @@
 
 	\section{Conclusion}
 	\begin{frame}{Conclusion}
-		Nå kan man querye norske parkeringsplasser.
-		Fremtidsrettet
-	\end{frame}
-
-	\begin{frame}{Five Stars}
 		\begin{itemize}
-			\item Data is available on the Web, in whatever format.
-			\item Available as machine-readable structured data, (i.e., not a scanned image).
-			\item Available in a non-proprietary format, (i.e, CSV, not Microsoft Excel).
-			\item Published using open standards from the W3C (RDF and SPARQL).
-			\item All of the above and links to other Linked Open Data.
+			\item Added 244325 triples.
+			\item Futureproof (Airflow).
+			\item SPARQL endpoint.
 		\end{itemize}
 	\end{frame}
 
+	\subsection{Five Stars}
 	\begin{frame}{Five Stars}
 		\centering
 		\begin{tikzpicture}[remember picture,overlay]
@@ -94,7 +114,7 @@
 		\vspace{26pt}
 		\hrule
 		\vspace{26pt}
-		Our data is hosted publicly at http://tisk.ml
+		Our data is hosted publicly at http://norpark.ml
 	\end{frame}
 
 	\begin{frame}{Five Stars}
@@ -151,6 +171,7 @@
 		Our data links to DBpedia among others.
 	\end{frame}
 
+	\subsection{The Linked Open Data Cloud}
 	\begin{frame}{The Linked Open Data Cloud}
 		\begin{figure}
 			\includegraphics[scale=0.6]{resources/lod-cloud-sm.jpg}
@@ -159,6 +180,7 @@
 		\end{figure}
 	\end{frame}
 
+	\subsection{The semantic web today}
 	\begin{frame}{The semantic web today}
 		\begin{figure}
 			\includegraphics[scale=0.25]{resources/semantic-web-is-dead.png}
