@@ -179,7 +179,7 @@ Owl, RDF, Turtle, xml,
 	DONE Virtual env
 	DONE Endre createrdf til å loope gjennom json
 	DONE Lage klasser og properties i createrdf
-	Begynne på presentasjon, sette opp alle slidene vi tror vi trenger
+	DONE Begynne på presentasjon, sette opp alle slidene vi tror vi trenger
 	Lage airflow figur
 	DONE Legge til is_active igjen på facility
 	DONE Sørg for at de som er aktive ikke har en attributt deactivation date
