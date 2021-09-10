@@ -100,8 +100,8 @@ def fillMunicipalityUriDf():
 
 def fillPostalDf():
     global postalDf
-    # url = "https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/_/attachment/download/7f0186f6-cf90-4657-8b5b-70707abeb789:676b821de9cff02aaa7a009daf0af8a2a346a1bc/Postnummerregister-ansi.txt"
-    url = "post.txt"
+    url = "https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/_/attachment/download/7f0186f6-cf90-4657-8b5b-70707abeb789:676b821de9cff02aaa7a009daf0af8a2a346a1bc/Postnummerregister-ansi.txt"
+    # url = "post.txt"
 
     header_list = ["postcode", "postplace", "citycode", "city", "category"]
     postalDf = pd.read_csv(url, encoding='ISO-8859-1', sep='\t', names=header_list, dtype=str)
@@ -307,7 +307,7 @@ def fillGraph(parkDict):
         addProviderTriples(v)
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
-        break;
+        # break;
 
     #http://wifo5-03.informatik.uni-mannheim.de/bizer/pub/LinkedDataTutorial/#whichvocabs
 

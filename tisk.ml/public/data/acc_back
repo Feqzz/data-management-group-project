@@ -1,6 +1,0 @@
-
-AddType application/rdf+xml .rdf
-
-RewriteEngine On
-RewriteBase /data
-RewriteRule ^parking$ parking.rdf

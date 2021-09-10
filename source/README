@@ -25,3 +25,4 @@ $ python3 createrdf.py
 
 
 To setup the webpage and host the RDF triples, we have created configuration files for third party software.
+THIS IS SETUP AND PUBLIC SO VIMALA WONT NEED TO BUILD THIS HERSELF. JUST ADD CONFIG FILES
