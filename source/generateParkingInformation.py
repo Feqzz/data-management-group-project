@@ -1,6 +1,7 @@
 import json
 import requests
 import time
+import pathlib
 
 def fetchParkingProviders():
     retList = []
@@ -13,10 +14,13 @@ def fetchParkingProviders():
 
     return retList
 
+
 def createFullJsonFile():
+    print("It can take some time before it starts..")
     parkingProvidersList = fetchParkingProviders()
 
-    f = open("parkingInformation.json", "wb")
+    parkingInformationFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/../parkingInformation.json"
+    f = open(parkingInformationFilePath, "wb")
     #The start of the JSON file. Each parking provider will become an element in the list.
     f.write(b"[")
 
@@ -41,6 +45,8 @@ def createFullJsonFile():
     #End the list.
     f.write(b"]")
     f.close()
+    print("Done!")
+
 
 if __name__ == "__main__":
     createFullJsonFile()
