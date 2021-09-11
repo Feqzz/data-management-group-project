@@ -62,41 +62,41 @@ illegalXmlCharactersRegex = genereateIllegalXmlCharactersRegex()
 def fillMunicipalityUriDf():
     global municipalityUriDf
     #from Wikidata
-    # url = 'https://query.wikidata.org/sparql'
-    # query = '''
-    # PREFIX wd: <http://www.wikidata.org/entity/>
-    # PREFIX wds: <http://www.wikidata.org/entity/statement/>
-    # PREFIX wdv: <http://www.wikidata.org/value/>
-    # PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-    # PREFIX wikibase: <http://wikiba.se/ontology#>
-    # PREFIX p: <http://www.wikidata.org/prop/>
-    # PREFIX ps: <http://www.wikidata.org/prop/statement/>
-    # PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
-    # PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-    # PREFIX bd: <http://www.bigdata.com/rdf#>
-    # SELECT DISTINCT ?municipalityCode ?municipality ?county ?country  WHERE {
-    #         ?municipality p:P2504 ?statement0.
-    #         ?statement0 (ps:P2504) ?municipalityCode.
-    #         ?municipality p:P131 ?statement1.
-    #         ?statement1 (ps:P131) ?county.
-    #         ?municipality p:P17 ?statement2.
-    #         ?statement2 (ps:P17) ?country.
-    #         MINUS {
-    #         ?municipality p:P31 ?statement3.
-    #         ?statement3 (ps:P31/(wdt:P279*)) wd:Q18663579.
-    #       }
-    #       }
+    url = 'https://query.wikidata.org/sparql'
+    query = '''
+    PREFIX wd: <http://www.wikidata.org/entity/>
+    PREFIX wds: <http://www.wikidata.org/entity/statement/>
+    PREFIX wdv: <http://www.wikidata.org/value/>
+    PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+    PREFIX wikibase: <http://wikiba.se/ontology#>
+    PREFIX p: <http://www.wikidata.org/prop/>
+    PREFIX ps: <http://www.wikidata.org/prop/statement/>
+    PREFIX pq: <http://www.wikidata.org/prop/qualifier/>
+    PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX bd: <http://www.bigdata.com/rdf#>
+    SELECT DISTINCT ?municipalityCode ?municipality ?county ?country  WHERE {
+            ?municipality p:P2504 ?statement0.
+            ?statement0 (ps:P2504) ?municipalityCode.
+            ?municipality p:P131 ?statement1.
+            ?statement1 (ps:P131) ?county.
+            ?municipality p:P17 ?statement2.
+            ?statement2 (ps:P17) ?country.
+            MINUS {
+            ?municipality p:P31 ?statement3.
+            ?statement3 (ps:P31/(wdt:P279*)) wd:Q18663579.
+          }
+          }
 
     # # '''
-    # r = requests.get(url, params = {'format': 'json', 'query': query})
-    # data = r.json()
+    r = requests.get(url, params = {'format': 'json', 'query': query})
+    data = r.json()
     # with open("query.json", 'w') as json_file:
-    #     json.dump(data, json_file)
+        # json.dump(data, json_file)
 
     # from file
-    queryFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/query.json"
-    with open(queryFilePath) as json_file:
-        data = json.load(json_file)
+    # queryFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/query.json"
+    # with open(queryFilePath) as json_file:
+        # data = json.load(json_file)
 
     municipalityUriDf = pd.json_normalize(data["results"]["bindings"])
 
