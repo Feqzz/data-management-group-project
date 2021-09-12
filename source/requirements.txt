@@ -3,3 +3,4 @@ requests==2.22.0
 chardet==3.0.4
 pandas==1.1.2
 rdflib==6.0.0
+apache-airflow==2.1.3
