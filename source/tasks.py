@@ -6,7 +6,8 @@ from data_extraction import createFullJsonFile
 
 
 def extract_data_from_apis():
-    de.createFullJsonFile()
+    print("")
+    # de.createFullJsonFile()
 def transform_data_to_lod():
     rdf.transform()
 def restart_fuseki():
