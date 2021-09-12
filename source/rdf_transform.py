@@ -30,6 +30,7 @@ g.namespace_manager.bind("geo", geo)
 
 def genereateIllegalXmlCharactersRegex():
 
+    #List of illegal characters
     illegal_unichrs = [(0x00, 0x08), (0x0B, 0x0C), (0x0E, 0x1F),
                         (0x7F, 0x84), (0x86, 0x9F),
                         (0xFDD0, 0xFDDF), (0xFFFE, 0xFFFF)]
@@ -45,6 +46,7 @@ def genereateIllegalXmlCharactersRegex():
                                 (0xFFFFE, 0xFFFFF), (0x10FFFE, 0x10FFFF)])
 
     illegal_ranges = [fr'{chr(low)}-{chr(high)}' for (low, high) in illegal_unichrs]
+    #Creates a regex string for the illegal characters.
     xml_illegal_character_regex = '[' + ''.join(illegal_ranges) + ']'
     return re.compile(xml_illegal_character_regex)
 
@@ -100,6 +102,7 @@ def getLocationUrisFromMunicipalityCode(code):
 
 
 def getParkingDict():
+    #Uses the JSON file created with data from Statens Vegvesen
     parkingInformationFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parkingInformation.json"
     f = open(parkingInformationFilePath)
     data = json.load(f)
@@ -160,6 +163,7 @@ def addFacilityTriples(facility):
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"] ) ) )
     g.add( ( facilityUri, pns.no_of_handicap_parking_spaces, Literal( facility["aktivVersjon"]["antallForflytningshemmede"], datatype=XSD.unsignedInt ) ) )
 
+    #Some characters from the handicap description inxludes illegal XML characters. We use a regex to remove these characters.
     filteredHandicapInformation = illegalXmlCharactersRegex.sub('', str(facility["aktivVersjon"]["vurderingForflytningshemmede"]))
     if (filteredHandicapInformation != "None"):
         g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
@@ -171,8 +175,11 @@ def addFacilityTriples(facility):
     if(facility["deaktivert"] != None):
         g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
 
+    #Add comments in both english and norwegian.
     commentEn = str(facility["aktivVersjon"]["navn"]) + " is a "
     commentNo = str(facility["aktivVersjon"]["navn"]) + " er "
+
+    #We need to translate the JSON tags to the english classes StreetParking, ParkingLot and ParkingGarage.
     parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
     if (parkingType == "LANGS_KJOREBANE"):
         g.add( (facilityUri, RDF.type, pns.StreetParking) )
@@ -193,7 +200,9 @@ def addFacilityTriples(facility):
     g.add( ( (facilityUri, RDFS.comment, Literal(commentNo, lang="no") ) ) )
 
 
+#Generates the ontology with RDF triples
 def addOntology():
+    #Create the URI for the attribute where pns is the namespace for http://norpark.ml
     uri = URIRef(pns + "is_operated_by")
     g.add( (uri, RDF.type, RDF.Property ) )
     g.add( (uri, RDFS.label, Literal("is operated by", lang="en") ) )
@@ -291,11 +300,12 @@ def addOntology():
 
 
 def fillGraph(parkDict):
+    #For every parking provider, generate RDF triples for it.
     for v in parkDict:
         addProviderTriples(v)
+        #For every parking facility the parking provider has, generate RDF triples for it.
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
-        # break;
 
 
 def transform():
@@ -308,8 +318,10 @@ def transform():
     print("Adding entities..")
     fillGraph(parkDict)
 
+    #Create the file path for the rdf file.
     rdfPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
+    #Change permissions so that airflow is able to access the file.
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 
     print("Done!")
