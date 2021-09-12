@@ -27,6 +27,7 @@ g.namespace_manager.bind("wikiprop", wikiprop)
 g.namespace_manager.bind("schema-org", SDO)
 geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 g.namespace_manager.bind("geo", geo)
+geog = Namespace("http://www.opengis.net/ont/geosparql#")
 
 def genereateIllegalXmlCharactersRegex():
 
@@ -144,8 +145,9 @@ def addFacilityTriples(facility):
     countryIri = URIRef(locationInfo["country.value"])
 
     g.add( ( facilityUri, pns.is_operated_by, providerUri) )
-    g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"] ) ) )
+    g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"]) ) )
     address = BNode()
+    # address = URIRef(pns + "address/F" + str(facility["id"]))
     g.add( ( facilityUri, SDO.PostalAddress, address ) )
     g.add( ( address, RDF.type, SDO.PostalAddress ) )
     g.add( ( address, SDO.streetAddress, Literal( facility["aktivVersjon"]["adresse"] ) ) )
@@ -166,6 +168,7 @@ def addFacilityTriples(facility):
 
     g.add( ( facilityUri, geo.lat, Literal(facility['breddegrad'], datatype=XSD.float)) )
     g.add( ( facilityUri, geo.long, Literal(facility['lengdegrad'], datatype=XSD.float)) )
+    g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['lengdegrad']} {facility['breddegrad']})", datatype=geo.wktLiteral ) ) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
     if(facility["deaktivert"] != None):
