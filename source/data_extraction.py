@@ -2,6 +2,7 @@ import json
 import requests
 import time
 import pathlib
+from airflow import AirflowException
 
 #Returns a list of each parking providers' organization number
 def fetchParkingProviders():
@@ -51,9 +52,11 @@ def createFullJsonFile():
                 time.sleep(sleepTime)
             else:
                 print(progressText + ": [ERROR] No handling routines for the code: " + str(r.status_code))
+                raise AirflowException("Failed to query Statens Vegvesen")
 
         except requests.exceptions.ReadTimeout:
-            print(progressText + ": [WARNING] Read timeout")
+            print(progressText + ": [ERROR] Read timeout")
+            raise AirflowException("Failed to query Statens Vegvesen")
 
     #End the list.
     f.write(b"]")
