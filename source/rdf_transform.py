@@ -182,11 +182,11 @@ def addFacilityTriples(facility):
     commentEn = str(facility["aktivVersjon"]["navn"]) + " is a "
     commentNo = str(facility["aktivVersjon"]["navn"]) + " er "
 
-    #We need to translate the JSON tags to the english classes StreetParking, ParkingLot and ParkingGarage.
+    #We need to translate the JSON tags to the english classes ParallelParking, ParkingLot and ParkingGarage.
     parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
     if (parkingType == "LANGS_KJOREBANE"):
-        g.add( (facilityUri, RDF.type, pns.StreetParking) )
-        commentEn += "street parking place"
+        g.add( (facilityUri, RDF.type, pns.ParallelParking) )
+        commentEn += "parallel parking place"
         commentNo += "en gateparkering"
     elif (parkingType == "AVGRENSET_OMRADE"):
         g.add( (facilityUri, RDF.type, pns.ParkingLot) )
@@ -280,6 +280,7 @@ def addOntology():
 
     uri = URIRef(pns + "ParkingCompany")
     g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#Organization") ) )
 
 
     uri = URIRef(pns + "ParkingFacility")
@@ -290,16 +291,19 @@ def addOntology():
     uri = URIRef(pns + "ParkingLot")
     g.add( (uri, RDF.type, RDFS.Class) )
     g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingLot") ) )
 
 
     uri = URIRef(pns + "ParkingGarage")
     g.add( (uri, RDF.type, RDFS.Class) )
     g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingGarage") ) )
 
 
-    uri = URIRef(pns + "StreetParking")
+    uri = URIRef(pns + "ParallelParking")
     g.add( (uri, RDF.type, RDFS.Class) )
     g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParallelParking") ) )
 
 
 def fillGraph(parkDict):
@@ -309,6 +313,7 @@ def fillGraph(parkDict):
         #For every parking facility the parking provider has, generate RDF triples for it.
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
+        break;
 
 
 def transform():
@@ -324,6 +329,7 @@ def transform():
     #Create the file path for the rdf file.
     rdfPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
+    g.serialize(destination="parking.ttl")
     #Change permissions so that airflow is able to access the file.
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 
