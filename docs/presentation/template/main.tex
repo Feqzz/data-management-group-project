@@ -34,14 +34,18 @@
 	\end{frame}}
 
 	\section{Introduction}
-	\subsection{Linked Data}
 
+	\subsection{Linked Data}
 	\begin{frame}{Linked Data}
 
+		\begin{figure}
+			\includegraphics[scale=0.40]{resources/lod.png}
+			\caption{A linked open data cloud\footnote[frame]{%
+				Diagram taken from \url{linkeddata.center} }}
+		\end{figure}
 	\end{frame}
 
 	\subsection{Norwegian Linked Open Data}
-
 	\begin{frame}{Norwegian Linked Open Data}
 		\begin{figure}
 			\includegraphics[scale=0.19]{resources/norwegian-lod.png}
@@ -68,10 +72,18 @@
 				\includegraphics[width=35mm]{resources/sv.jpg}
 				};
 		\end{tikzpicture}%
+		\begin{tikzpicture}[overlay,remember picture]
+			\node[anchor=south east,xshift=-35pt,yshift=35pt]
+			at (current page.south east) {
+				\includegraphics[width=35mm]{resources/posten.png}
+				};
+		\end{tikzpicture}%
 		\begin{itemize}
 			\item Parking data from Statens vegvesen\\
 				(Norwegian Public Roads Administration).
 			\item Provides data for 10638 parking facilities.
+			\item Postal data from Posten\\
+				(Norwegian postal service).
 			\item Publicly available.
 		\end{itemize}
 	\end{frame}

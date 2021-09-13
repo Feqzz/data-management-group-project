@@ -6,4 +6,4 @@ clean:
 	@rm -rf *.snm *.run.xml *.bcf *.aux *.log *.out *.pdf *.toc *.nav
 
 build: main.tex
-	pdflatex $< 
+	pdflatex $< && pdflatex $<
