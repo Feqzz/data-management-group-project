@@ -1,11 +1,9 @@
-Hello Vimala!
-
-As we have used Linux when creating this project, this guide is be created for Linux:
+As we have used Linux when creating this project, including using dependencies only available for Linux, the guide is written for Linux only:
 
 Dependencies: 
 * python3
 
-We have written both of our scripts with Python. To execute the scripts, we recommend creating a virtual environment.
+Both the data extraction and transformation scripts are written in Python. To execute the scripts, we recommend creating a virtual environment.
 
 Create and activate a new virtual environment `my-venv`:
 $ python3 -m venv my-venv
@@ -17,12 +15,14 @@ $ pip3 install -r requirements.txt
 
 
 The JSON files that we fetch from Statens vegvesen are not complete, so we need to run a script that fetches all the information that we need and creates one large JSON file. To generate the JSON file:
-$ python3 generateParkingInformation.py
+$ python3 data_extraction.py
 
 
 To generate the RDF triples alongside our parking ontology, run this command:
-$ python3 createrdf.py
+$ python3 rdf_transform.py
 
 
 To setup the webpage and host the RDF triples, we have created configuration files for third party software.
-THIS IS SETUP AND PUBLIC SO VIMALA WONT NEED TO BUILD THIS HERSELF. JUST ADD CONFIG FILES
+
+The webpage is available publicly at http://norpark.ml.
+Therefore you are not required to learn Apache HTTP Server, Apache Fuseki, LodView and YASGUI and setup the configuration files yourself.
