@@ -27,6 +27,7 @@ g.namespace_manager.bind("wikiprop", wikiprop)
 g.namespace_manager.bind("schema-org", SDO)
 geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 g.namespace_manager.bind("geo", geo)
+geog = Namespace("http://www.opengis.net/ont/geosparql#")
 
 def genereateIllegalXmlCharactersRegex():
 
@@ -146,9 +147,10 @@ def addFacilityTriples(facility):
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
 
-    g.add( ( facilityUri, pns.is_operated_by, providerUri) )
-    g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"] ) ) )
+    g.add( ( facilityUri, pns.operated_by, providerUri) )
+    g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"]) ) )
     address = BNode()
+    # address = URIRef(pns + "address/F" + str(facility["id"]))
     g.add( ( facilityUri, SDO.PostalAddress, address ) )
     g.add( ( address, RDF.type, SDO.PostalAddress ) )
     g.add( ( address, SDO.streetAddress, Literal( facility["aktivVersjon"]["adresse"] ) ) )
@@ -165,25 +167,33 @@ def addFacilityTriples(facility):
 
     #Some characters from the handicap description inxludes illegal XML characters. We use a regex to remove these characters.
     filteredHandicapInformation = illegalXmlCharactersRegex.sub('', str(facility["aktivVersjon"]["vurderingForflytningshemmede"]))
+
     if (filteredHandicapInformation != "None"):
         g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
 
+
     g.add( ( facilityUri, geo.lat, Literal(facility['breddegrad'], datatype=XSD.float)) )
     g.add( ( facilityUri, geo.long, Literal(facility['lengdegrad'], datatype=XSD.float)) )
+    g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['lengdegrad']} {facility['breddegrad']})", datatype=geo.wktLiteral ) ) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
+
     if(facility["deaktivert"] != None):
-        g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
+        g.add( ( facilityUri, pns.deactivation_date, Literal( facility["deaktivert"]["deaktivertTidspunkt"], datatype=XSD.dateTime ) ) )
+        g.add( (facilityUri, pns.active, Literal( False ) ) )
+    else:
+        g.add( (facilityUri, pns.active, Literal( True ) ) )
+
 
     #Add comments in both english and norwegian.
     commentEn = str(facility["aktivVersjon"]["navn"]) + " is a "
     commentNo = str(facility["aktivVersjon"]["navn"]) + " er "
 
-    #We need to translate the JSON tags to the english classes StreetParking, ParkingLot and ParkingGarage.
+    #We need to translate the JSON tags to the english classes ParallelParking, ParkingLot and ParkingGarage.
     parkingType = facility["aktivVersjon"]["typeParkeringsomrade"]
     if (parkingType == "LANGS_KJOREBANE"):
-        g.add( (facilityUri, RDF.type, pns.StreetParking) )
-        commentEn += "street parking place"
+        g.add( (facilityUri, RDF.type, pns.ParallelParking) )
+        commentEn += "parallel parking place"
         commentNo += "en gateparkering"
     elif (parkingType == "AVGRENSET_OMRADE"):
         g.add( (facilityUri, RDF.type, pns.ParkingLot) )
@@ -203,12 +213,13 @@ def addFacilityTriples(facility):
 #Generates the ontology with RDF triples
 def addOntology():
     #Create the URI for the attribute where pns is the namespace for http://norpark.ml
-    uri = URIRef(pns + "is_operated_by")
+    uri = URIRef(pns + "operated_by")
     g.add( (uri, RDF.type, RDF.Property ) )
     g.add( (uri, RDFS.label, Literal("is operated by", lang="en") ) )
     g.add( (uri, RDFS.comment, Literal("A parking facility is operated by a parking company.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, URIRef(pns + "ParkingCompany") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#operatedBy") ) )
 
 
     uri = URIRef(pns + "active")
@@ -277,6 +288,7 @@ def addOntology():
 
     uri = URIRef(pns + "ParkingCompany")
     g.add( (uri, RDF.type, RDFS.Class) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#Organization") ) )
 
 
     uri = URIRef(pns + "ParkingFacility")
@@ -287,16 +299,19 @@ def addOntology():
     uri = URIRef(pns + "ParkingLot")
     g.add( (uri, RDF.type, RDFS.Class) )
     g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingLot") ) )
 
 
     uri = URIRef(pns + "ParkingGarage")
     g.add( (uri, RDF.type, RDFS.Class) )
     g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#ParkingGarage") ) )
 
 
-    uri = URIRef(pns + "StreetParking")
+    uri = URIRef(pns + "ParallelParking")
     g.add( (uri, RDF.type, RDFS.Class) )
     g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParkingFacility") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef(pns + "ParallelParking") ) )
 
 
 def fillGraph(parkDict):
@@ -306,6 +321,7 @@ def fillGraph(parkDict):
         #For every parking facility the parking provider has, generate RDF triples for it.
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
+        # break;
 
 
 def transform():
@@ -321,6 +337,7 @@ def transform():
     #Create the file path for the rdf file.
     rdfPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
+    g.serialize(destination="parking.ttl")
     #Change permissions so that airflow is able to access the file.
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 

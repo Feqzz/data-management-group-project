@@ -5,3 +5,8 @@ The data is accessable through a user-friendly web interface, where one can clic
 
 To ensure that the data that we present is always up-to-date, we have added an automatic workflow scheduler that will ensure that the data is updated periodically. A diagram of the workflow is described in Appendix \ref{appendix:airflow}.
 
+\vspace{5mm}
+
+Towards the end of the project, we thought it would be nice if we could provide the people reading our dataset with a map view of some kind, so that they have a visual representation in addition to the street address and postal code. If possible, we would like to have satellite imagery, but regular maps would also work fine. We would also like it if the reader were able to move the map view around to see the surrounding area.
+
+To achieve this, we investigated various Python libraries, scripts, and tools that we might be able to use. Eventually when we found LodView, we were able to get not only a nicer layout, but also a map view via a JavaScript API to the openstreetmaps service. This allowed us to include a map with a pin at the top of each parking place’s page.

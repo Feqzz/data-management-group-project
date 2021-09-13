@@ -27,7 +27,7 @@ default_args = {
         'email_on_failure': False,
         'email_on_retry': False,
         'retries': 1,
-        'retry_delay': timedelta(minutes=5),
+        'retry_delay': timedelta(minutes=1),
         'end_date': datetime(2023, 1, 1),
 }
 # [END default_args]
@@ -48,27 +48,28 @@ with DAG(
         task1 = PythonOperator(
                 task_id='extract_data',
                 python_callable=extract_data_from_apis,
+                retries=3
         )
 
         task2 = PythonOperator(
                 task_id='transform_data_to_lod',
-                depends_on_past=True,
+                # depends_on_past=True,
                 python_callable=transform_data_to_lod,
-                #retries=3,
+                retries=3,
         )
 
         task3 = PythonOperator(
                 task_id='restart_fuseki',
-                depends_on_past=True,
+                # depends_on_past=True,
                 python_callable=restart_fuseki,
-                #retries=3,
+                retries=3,
         )
 
         task4 = PythonOperator(
                 task_id='restart_lodview',
-                depends_on_past=True,
+                # depends_on_past=True,
                 python_callable=restart_lodview,
-                #retries=3,
+                retries=3,
         )
         # [END basic_task]
 
