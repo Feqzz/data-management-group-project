@@ -147,7 +147,7 @@ def addFacilityTriples(facility):
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
 
-    g.add( ( facilityUri, pns.is_operated_by, providerUri) )
+    g.add( ( facilityUri, pns.operated_by, providerUri) )
     g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"]) ) )
     address = BNode()
     # address = URIRef(pns + "address/F" + str(facility["id"]))
@@ -167,16 +167,23 @@ def addFacilityTriples(facility):
 
     #Some characters from the handicap description inxludes illegal XML characters. We use a regex to remove these characters.
     filteredHandicapInformation = illegalXmlCharactersRegex.sub('', str(facility["aktivVersjon"]["vurderingForflytningshemmede"]))
+
     if (filteredHandicapInformation != "None"):
         g.add( ( facilityUri, pns.handicap_information, Literal( filteredHandicapInformation, lang="no") ) )
+
 
     g.add( ( facilityUri, geo.lat, Literal(facility['breddegrad'], datatype=XSD.float)) )
     g.add( ( facilityUri, geo.long, Literal(facility['lengdegrad'], datatype=XSD.float)) )
     g.add( ( facilityUri, wikiprop.P625, Literal( f"Point({facility['lengdegrad']} {facility['breddegrad']})", datatype=geo.wktLiteral ) ) )
 
     g.add( ( facilityUri, pns.activation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
+
     if(facility["deaktivert"] != None):
-        g.add( ( facilityUri, pns.deactivation_date, Literal( facility["aktivVersjon"]["aktiveringstidspunkt"], datatype=XSD.dateTime ) ) )
+        g.add( ( facilityUri, pns.deactivation_date, Literal( facility["deaktivert"]["deaktivertTidspunkt"], datatype=XSD.dateTime ) ) )
+        g.add( (facilityUri, pns.active, Literal( False ) ) )
+    else:
+        g.add( (facilityUri, pns.active, Literal( True ) ) )
+
 
     #Add comments in both english and norwegian.
     commentEn = str(facility["aktivVersjon"]["navn"]) + " is a "
@@ -206,12 +213,13 @@ def addFacilityTriples(facility):
 #Generates the ontology with RDF triples
 def addOntology():
     #Create the URI for the attribute where pns is the namespace for http://norpark.ml
-    uri = URIRef(pns + "is_operated_by")
+    uri = URIRef(pns + "operated_by")
     g.add( (uri, RDF.type, RDF.Property ) )
     g.add( (uri, RDFS.label, Literal("is operated by", lang="en") ) )
     g.add( (uri, RDFS.comment, Literal("A parking facility is operated by a parking company.", lang="en") ) )
     g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, URIRef(pns + "ParkingCompany") ) )
+    g.add( (uri, RDFS.subClassOf, URIRef("http://schema.mobivoc.org/#operatedBy") ) )
 
 
     uri = URIRef(pns + "active")
@@ -313,7 +321,7 @@ def fillGraph(parkDict):
         #For every parking facility the parking provider has, generate RDF triples for it.
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
-        break;
+        # break;
 
 
 def transform():
