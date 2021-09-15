@@ -1,29 +1,24 @@
 \chapter{Discussion and Conclusions}
 %Discuss your results, challenges and conclude your work here.
 
-Even though we have made it possible to create complex SPARQL queries through our endpoint, they are still hard to write. With more time, we would have liked to explore the idea of an easy-to-use application that utilised our SPARQL endpoint. This would ensure that also non-programmers would be able to search for parking facilities.
+The reason for initially choosing to work with LOD was because we were intrigued by the possibilities the Semantic Web provide and wanted to contribute to its evolution. However, critics of the Semantic Web claim that it is an impossible dream, and over the past few years it has lost a lot of its momentum. As it is rarely used in the industry, the existing software and frameworks are often not very mature and in many cases deprated. They also often provide lacking or overly complex documentation. The prevalent use of Java has also been a challenge as none of the group members have any previous experience with it. 
 
+\vspace{5mm}
 
-Husk å nevne:
-	"Old" and not very mature technologies
-	Often made by researchers. Many stuff are deprecated, badly documented
+As we had no background knowledge on the Semantic Web and LOD we spent a lot of time researching the subject. This further increased our time constraints for the implementation of our system. Becuase of this, and to not reinvent the wheel, we have only written our own software when necessary or sensible, and rather tried to use existing implementations like Apache Fuseki and LodView. However, they are not meant for deployment out of the box. They require a lot of configuration, and this was a major challenge and time drain within the project.
 
-	Hard to configure
+\vspace{5mm}
 
-	Everything is JAVA, we hate JAVA.
+Our ontology and RDF schema took a lot of time in research and design, as well as finding a data source that could be linked to existing LOD. With more time, it would probably also be possible to link our data to more datasets, further integrating the Semantic Web. At first we implemented the entirety of our ontology as a separate OWL file with a completely novel vocabulary. However, according to \cite{w3-best-practices}, it is best practice to reuse existing standardized vocabularies as much as possible. Bacause we were able to do this to a large degree, we found it sufficient to integrate the novel part of our vocabulary with the individuals of our data in a single RDF file.
 
-	Had to spend a lot of time researching
+\vspace{5mm}
 
-	Unfortunately the semantic web is already dead
-	Not used in industry, not worth it for companies
+One of the major benefits of our system is our SPARQL endpoint. However, even though we have made it facilitated for complex SPARQL queries, they are still hard to write. With more time, we would have liked to explore the idea of an easy-to-use application that utilised our SPARQL endpoint. This would ensure that also non-programmers would be able to search for parking facilities.
 
-	Difficult to understand how data is actually "published"
+\vspace{5mm}
 
+There are several challenges with publishing LOD. According to \cite{can-i-sparql-your-endpoint}, SPARQL endpoints can be so resource intensive and expensive to host, that people struggle to keep their endpoints up. Were our endpoint to experience any non-trivial amount of traffic, it would require a lot of expences on our part. Another challenge is that when publishing linked data, you are entering a social contract with the Semantic Web. The IRIs of the published resources should ideally be valid forever. The namespace of our dataset relies on a free domain (norpark.ml), which we own for the next year. Are we to ensure a long life for our dataset, this too will cost money in the long run. Becuase of this, we will contact The Norwegian Public Roads Administration, and inform them about how we have improved the usability of their data. Even though private corporations does not see the benefit of publishing their data as LOD, governmental institutions should act with more altruism. Hopefully our project can serve as a springboard or inspiration for further ventures into the Semantic Web within The Norwegian Public Roads Administration.
 
-	However, on a positive note, if the dream of the semantic web will ever be realized, we will have made a meaningful contribution to it! ELLER NOE
+\vspace{5mm}
 
-
-
-The data from Statens vegvesen's API \cite{statensvegvesen} does not come complete. We had to create a script that queries their API over 400 times in order to get all the data that we need. We tried implementing our ontology with both an OWL and RDF based solution, before deciding on RDF as ???. The webpage went through several frameworks??\\
-
-The duration of the project spanned for three weeks. During the first week, we sat together and researched technologies, solutions and the semantic web while also creating small proof-of-concept programs and a baseline. The following days we split the working tasks equally among all group members and began implementing our solution.
+The duration of the project spanned three weeks. During the first week, we sat together and researched technologies, solutions and the semantic web while also creating small proof-of-concept programs and a baseline. The following days we split the working tasks equally among all group members and began implementing our solution.
