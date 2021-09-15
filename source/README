@@ -1,4 +1,4 @@
-As we have used Linux when creating this project, including using dependencies only available for Linux, the guide is written for Linux only:
+As we have used Linux when creating this project, including using dependencies only available for Linux, this guide is written for Linux only:
 
 Dependencies: 
 * python3
@@ -25,4 +25,4 @@ $ python3 rdf_transform.py
 To setup the webpage and host the RDF triples, we have created configuration files for third party software.
 
 The webpage is available publicly at http://norpark.ml.
-Therefore you are not required to learn Apache HTTP Server, Apache Fuseki, LodView and YASGUI and setup the configuration files yourself.
+This means that there is no need to setup Apache HTTP Server, Apache Fuseki, LodView and YASGUI with the configuration files.
