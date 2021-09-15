@@ -337,7 +337,7 @@ def transform():
     #Create the file path for the rdf file.
     rdfPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
-    g.serialize(destination="parking.ttl")
+    # g.serialize(destination="parking.ttl")
     #Change permissions so that airflow is able to access the file.
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
 
