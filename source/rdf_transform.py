@@ -80,15 +80,16 @@ def fillMunicipalityUriDf():
             ?statement1 (ps:P131) ?county.
             ?municipality p:P17 ?statement2.
             ?statement2 (ps:P17) ?country.
+
             MINUS {
-            ?municipality p:P31 ?statement3.
-            ?statement3 (ps:P31/(wdt:P279*)) wd:Q18663579.
-          }
-          }
-    # # '''
+                ?municipality p:P31 ?statement3.
+                ?statement3 (ps:P31/(wdt:P279*)) wd:Q18663579.
+            }
+    }
+    '''
 
     #perform query
-    r = requests.get(url, params = {'format': 'json', 'query': query})
+    r = requests.get(url, params = {'format': 'json', 'query': query}, headers={'User-Agent': 'norpark.ml'})
     data = r.json()
     #Transform response to pandas dataframe
     municipalityUriDf = pd.json_normalize(data["results"]["bindings"])
