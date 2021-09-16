@@ -50,7 +50,7 @@ var queries = [
 	"PREFIX schema: <http://schema.org/>\n" +
 	"PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>\n" +
 
-	"SELECT ?parking ?electric_chargers ?handicap ?city ?wkt ?wktLabel WHERE\n" +
+	"SELECT DISTINCT ?parking ?wktLabel ?electric_chargers ?wkt WHERE\n" +
 	"{\n" +   
 
 		"\tSERVICE <http://query.wikidata.org/sparql>\n" +
