@@ -18,8 +18,7 @@ def restart_fuseki():
 def restart_lodview():
     os.system("curl -u admin:password http://localhost:8080/manager/text/reload?path=/lodview")
 def build_cloud():
-    pass
-def build_graph():
-    pass
+    os.system("/home/user/source/lod-cloud-draw/generate-clouds.sh")
+    os.system("cp /home/user/source/lod-cloud-draw/clouds/lod-cloud.svg home/user/source/data-management-group-project/graph/")
 
 

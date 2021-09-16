@@ -14,7 +14,6 @@ from airflow.models.baseoperator import chain
 from tasks import extract_data_from_apis
 from tasks import transform_data_to_lod
 from tasks import build_cloud
-from tasks import build_graph
 from tasks import restart_fuseki
 from tasks import restart_lodview
 
@@ -26,7 +25,7 @@ from tasks import restart_lodview
 default_args = {
         'owner': 'airflow',
         'depends_on_past': False,
-        'email': ['kentodde89@gmail.com'],
+        'email': ['norpark@gmail.com'],
         'email_on_failure': False,
         'email_on_retry': False,
         'retries': 1,
@@ -78,11 +77,6 @@ with DAG(
                 retries=3,
         )
 
-        task6 = PythonOperator(
-                task_id='build_graph',
-                python_callable=build_graph,
-                retries=3,
-        )
         # [END basic_task]
 
         # [START documentation]
@@ -108,7 +102,7 @@ with DAG(
         # [START dependency ]
 
         # chain(task1, task2, [task3, task5, task6], [task4])
-        chain(task1 >> task2 >> [task3, task5], [task4, task6])
+        task1 >> task2 >> task3 >> task4 >> task5
 
         # [END dependency ]
 
