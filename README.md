@@ -13,6 +13,7 @@ Our system is created for deployment on a Linux Server, so all build instruction
 	* [Apache2 HTTP Configuration](#apache2-http-configuration)
 * [graph](#graph)
 * [query](#query)
+* [data](#data)
 
 
 
@@ -118,3 +119,9 @@ Apache Jena Fuseki out of the box gives the user a bit too much freedom, so we u
 YASGUI is a JavaScript library, which requires no installation. 
 
 After setting up the Apache2 configuration for the web-application it should work out of the box
+
+
+
+## data
+
+The data folder is in deployment a temporary storage for data files. We have added it here mainly for illustration, but it also contains the file `parking_small.ttl`, which contains our schema as well as a small subset of the triples in our dataset.
