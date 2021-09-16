@@ -17,5 +17,9 @@ def restart_fuseki():
     os.system("curl -u admin:password http://localhost:8080/manager/text/reload?path=/fuseki")
 def restart_lodview():
     os.system("curl -u admin:password http://localhost:8080/manager/text/reload?path=/lodview")
+def build_cloud():
+    pass
+def build_graph():
+    pass
 
 

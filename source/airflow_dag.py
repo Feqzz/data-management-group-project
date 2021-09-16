@@ -8,10 +8,13 @@ from airflow import DAG
 # Operators; we need this to operate!
 from airflow.operators.python import PythonOperator
 from airflow.utils.dates import days_ago
+from airflow.models.baseoperator import chain
 
 # user defined functions
 from tasks import extract_data_from_apis
 from tasks import transform_data_to_lod
+from tasks import build_cloud
+from tasks import build_graph
 from tasks import restart_fuseki
 from tasks import restart_lodview
 
@@ -53,22 +56,31 @@ with DAG(
 
         task2 = PythonOperator(
                 task_id='transform_data_to_lod',
-                # depends_on_past=True,
                 python_callable=transform_data_to_lod,
                 retries=3,
         )
 
         task3 = PythonOperator(
                 task_id='restart_fuseki',
-                # depends_on_past=True,
                 python_callable=restart_fuseki,
                 retries=3,
         )
 
         task4 = PythonOperator(
                 task_id='restart_lodview',
-                # depends_on_past=True,
                 python_callable=restart_lodview,
+                retries=3,
+        )
+
+        task5 = PythonOperator(
+                task_id='build_cloud',
+                python_callable=build_cloud,
+                retries=3,
+        )
+
+        task6 = PythonOperator(
+                task_id='build_graph',
+                python_callable=build_graph,
                 retries=3,
         )
         # [END basic_task]
@@ -95,7 +107,8 @@ with DAG(
 
         # [START dependency ]
 
-        task1 >> task2 >> task3  >> task4
+        # chain(task1, task2, [task3, task5, task6], [task4])
+        chain(task1 >> task2 >> [task3, task5], [task4, task6])
 
         # [END dependency ]
 
