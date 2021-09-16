@@ -82,13 +82,13 @@ var queries = [
 	"PREFIX schema: <http://schema.org/>\n" +
 
 	"SELECT ?sub ?lab ?wkt ?wktLabel WHERE {\n" +
-		"?sub rdf:type norpark:ParkingFacility, norpark:ParkingGarage   .\n" +
-		"?sub rdfs:label ?lab .\n" +
-		"?sub wikiprop:P625 ?wkt .\n" +
-		"?sub schema:PostalAddress ?addr .\n" +
-		"?addr schema:addressRegion ?reg .\n" +
+		"\t?sub rdf:type norpark:ParkingFacility, norpark:ParkingGarage   .\n" +
+		"\t?sub rdfs:label ?lab .\n" +
+		"\t?sub wikiprop:P625 ?wkt .\n" +
+		"\t?sub schema:PostalAddress ?addr .\n" +
+		"\t?addr schema:addressRegion ?reg .\n" +
 	  
-		"FILTER(?reg = <http://www.wikidata.org/entity/Q5245991> ) .\n" +
+		"\n\tFILTER(?reg = <http://www.wikidata.org/entity/Q5245991> ) .\n" +
 	"} \n" +
 	"LIMIT 25\n"
 ];
