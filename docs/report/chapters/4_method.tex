@@ -1,7 +1,7 @@
 \chapter{Research Methodology}
 
 \section{Choice of technology}
-Even though most tools for the Semantic Web are written in Java, some open source libraries for Python have become availabe in recent years \cite{w3java}. Python then became an easy choice for extracting data from the sources and transforming it to LOD. For publishing the data, we chose to host a SPARQL Endpoint using Apache Fuseki and use LodView to dynamically generate an HTML representation of the dataset based on the SPARQL endpoint. A major benefit of this, is that Fuseki also provide access to a reasoner, ensuring that the published data is as rich as possible. Fuseki and LodView are deployed using Apache Tomcat, along with a reverse proxy in Apache HTTP server in order to make them publicy available on the internet. For visualising how we will fit into the LOD cloud we have utilized Lod Cloud Draw.
+Even though most tools for the Semantic Web are written in Java, some open source libraries for Python have become available in recent years \cite{w3java}. Python then became an easy choice for extracting data from the sources and transforming it to LOD. For publishing the data, we chose to host a SPARQL Endpoint using Apache Fuseki and use LodView to dynamically generate an HTML representation of the dataset based on the SPARQL endpoint. A major benefit of this, is that Fuseki also provide access to a reasoner, ensuring that the published data is as rich as possible. Fuseki and LodView are deployed using Apache Tomcat, along with a reverse proxy in a Apache HTTP server in order to make them publicly available on the internet. For visualising how we will fit into the LOD cloud we have utilised Lod Cloud Draw.
 
 \vspace{5mm}
 
@@ -16,15 +16,20 @@ For handling the automatic workflow scheduling, we opted for Apache Airflow as w
 The technology choice we struggled the most with, was for the HTML representation. Here we experimented with several frameworks like Pubby and Loddy before landing on LodView, which provided all the functionality we wanted.
 
 \section{Data collection process}
-Statens vegvesen (Norwegian Public Roads Administration) \cite{statensvegvesen} provides an API for their parking data in JSON format. As the API only gives access to subsets of the data, we have created a program that fetches the complete dataset and creates a single JSON file.
+Statens Vegvesen \cite{statensvegvesen} provides an API for their parking data in a JSON format. As the API only gives access to subsets of the data, we have created a program that fetches the complete dataset and creates a single JSON file.
 
 \vspace{5mm}
 
-This data is fed to a program that combines our RDF schema as seen in Appendix \ref{appendix:ontology} and the parking data, generating RDF triples in a RDF/XML file format. The program additionally uses data from the Norwegian postal and logistics company Bring \cite{bring} to match postal codes from Statens vegvesen's data with Norwegian municipality codes. These codes are then linked with Wikidata \cite{wikidata} using their SPARQL endpoint.
+This data is fed to a program that combines our RDF schema as seen in Appendix \ref{appendix:ontology} and the parking data, generating RDF triples in a RDF/XML file format. The program additionally uses data from the Norwegian postal and logistics company Bring \cite{bring} to match postal codes from Statens Vegvesen's data with Norwegian municipality codes. These codes are then linked with Wikidata \cite{wikidata} using their SPARQL endpoint.
 
 \vspace{5mm}
 
-In our RDF schema, we inherit and reuse vocabularies we have found in the ontologies provided at Schema-org \cite{schema-org} and MobiVoc \cite{schema-mobivoc}.
+In our RDF schema, we inherit and reuse vocabularies we have found in the ontologies provided at Schema-org \cite{schema-org} and MobiVoc \cite{schema-mobivoc}. 
+
+\vspace{5mm}
+
+All generated data can be viewed at \url{http://raw.norpark.ml}.
+
 
 
 \section{System architecture}
