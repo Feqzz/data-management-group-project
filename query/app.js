@@ -11,7 +11,7 @@ var queries = [
 		"\t?parking a norpark:ParkingFacility .\n" +
 		"\t?parking rdfs:label ?label .\n" +
 	"}\n" +  
-	"LIMIT 10",
+	"LIMIT 100",
 
 	//query 1
 	"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
@@ -30,7 +30,7 @@ var queries = [
 		"\t?addr schema:postalCode ?postalCode .\n" +
 		"\tFILTER(?postalCode = \"3016\") .\n" +
 	"}\n" +  
-	"LIMIT 10",
+	"LIMIT 100",
 
 
 	//Query 2
@@ -71,7 +71,7 @@ var queries = [
 		"\tFILTER (?handicap > 0) .\n" +
 		"\tFILTER (?electric_chargers > 0) .\n" +
 	"}\n" +  
-	"LIMIT 10",
+	"LIMIT 100",
 
 	//Query 3
 	"PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\n" +
