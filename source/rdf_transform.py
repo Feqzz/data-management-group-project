@@ -130,6 +130,7 @@ def addProviderTriples(provider):
     org_number_propIri = URIRef("https://www.wikidata.org/wiki/Property:P2333")
 
     #Add triples to graph
+    g.add( ( providerUri, RDF.type, pns.ParkingCompany ) )
     g.add( ( providerUri, org_number_propIri, Literal( provider["organisasjonsnummer"] ) ) )
     g.add( ( providerUri, RDFS.label, Literal( provider["navn"] ) ) )
     g.add( ( providerUri, SDO.url, Literal( provider["nettsted"] ) ) )
@@ -241,7 +242,6 @@ def addOntology():
     g.add( (uri, RDF.type, RDFS.Datatype) )
     g.add( (uri, RDFS.label, Literal("active", lang="en") ) )
     g.add( (uri, RDFS.comment, Literal("Tells if the parking facility is active or not.", lang="en") ) )
-    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.boolean) )
 
 
@@ -336,7 +336,6 @@ def fillGraph(parkDict):
         #For every parking facility the parking provider has, generate RDF triples for it.
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
-
 
 def transform():
     fillPostalDf()
