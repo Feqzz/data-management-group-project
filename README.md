@@ -89,6 +89,7 @@ LodView serves as our html representation generator, and generates this dynamica
 This application is also deployed using Tomcat, please follow the instructions found in their wiki: <https://github.com/LodLive/LodView/wiki/how-to%3A-install-and-configure-%28fast-method%29>
 
 The config file found in config/LodView, should be placed in the lodview/WEB-INF folder found under tomcat9/webapps
+The file home.jsp is nothing more than an edited frontpage of the website, should be placed in the folder lodview/WEB-INF/views/
 
 
 
