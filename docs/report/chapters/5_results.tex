@@ -1,12 +1,26 @@
 \chapter{Results}
-We have managed to add Norway's publicly available parking data to the semantic web. In numbers, this results in 244325 RDF triples. This makes it possible to create advanced queries to find parking facilities, that can for instance take a geographical location, numbers of handicap places and electrical vehicle chargers into account.
+We have managed to extract, transform and publish The Norwegian Public Roads Administration's publicly available parking data to the Semantic Web. In numbers, this results in 280 892 RDF triples as seen in Appendix \ref{appendix:triples}. This makes it possible to create advanced queries to find parking facilities, that can for instance take a geographical location, numbers of handicap places and electrical vehicle chargers into account. We have linked the dataset to geographical locations in Wikidata, resulting in a total of 31 938 links to nodes outside our dataset. Great emphasis has also been put into reusing existing vocabularies, which increases the integration of our dataset with the existing Semantic Web. The integration with Wikidata also means that the number of possible queries and use cases are infinite.
 
-The data is accessable through a user-friendly web interface, where one can click through all of the parking facilites and parking companies linked attributes and even end up on another webpage such as Wikidata.org. A screenshot of the webpage is shown in Appendix \ref{appendix:webpage}. The web interface provides an interactive map for each parking facility, making it easy to locate the facilites.
+\vspace{5mm}
+The data is accessable through a user-friendly web interface at \url{http://norpark.ml}, where one can click through all of the parking facilites and parking companies' linked attributes and even end up on another webpage such as Wikidata.org. A screenshot of the webpage is shown in Appendix \ref{appendix:webpage}. The web interface provides an interactive map for each parking facility, making it easy to locate the facilites.
+
+\vspace{5mm}
+
+As mentioned, we have also provided a public SPARQL endpoint, which is accessible at \url{http://query.norpark.ml}. Here the user can execute queries on our dataset, either directly or programatically. An example of this can be seen in Appendix \ref{appendix:query}.
+
+\vspace{5mm}
 
 To ensure that the data that we present is always up-to-date, we have added an automatic workflow scheduler that will ensure that the data is updated periodically. A diagram of the workflow is described in Appendix \ref{appendix:airflow}.
 
 \vspace{5mm}
 
-Towards the end of the project, we thought it would be nice if we could provide the people reading our dataset with a map view of some kind, so that they have a visual representation in addition to the street address and postal code. If possible, we would like to have satellite imagery, but regular maps would also work fine. We would also like it if the reader were able to move the map view around to see the surrounding area.
+As mentioned one of our goals was to publish our data on the LOD Cloud \cite{lod-cloud}, and receive a five star rating. Unfortutely they only update their graph once or twice a year, so for now, in order to see our dataset in the cloud we have generated this ourselves using their open source software. This interactive graph is made public at \url{http://graph.norpark.ml}, and a screenshot can be seen in Appendix \ref{appendix:cloud}. Our dataset colored blue and located in the top center of the cloud.
 
-To achieve this, we investigated various Python libraries, scripts, and tools that we might be able to use. Eventually when we found LodView, we were able to get not only a nicer layout, but also a map view via a JavaScript API to the openstreetmaps service. This allowed us to include a map with a pin at the top of each parking place’s page.
+\vspace{5mm}
+
+We are happy to say that our dataset meets all the requirements of a five star rating. 
+However, as the LOD Cloud only checks the status of the dataset periodically we are currently only rated at three stars until the next update of the Cloud. This can be seen in the page of our published dataset at \url{https://lod-cloud.net/dataset/norpark} and in Appendix \ref{appendix:lod-norpark}.
+
+%Towards the end of the project, we thought it would be nice if we could provide the people reading our dataset with a map view of some kind, so that they have a visual representation in addition to the street address and postal code. If possible, we would like to have satellite imagery, but regular maps would also work fine. We would also like it if the reader were able to move the map view around to see the surrounding area.
+
+%To achieve this, we investigated various Python libraries, scripts, and tools that we might be able to use. Eventually when we found LodView, we were able to get not only a nicer layout, but also a map view via a JavaScript API to the openstreetmaps service. This allowed us to include a map with a pin at the top of each parking place’s page.

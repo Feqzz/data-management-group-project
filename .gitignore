@@ -1,3 +1,4 @@
 *.sw*
 source/__pycache__
 data/*
+!data/parking_small.ttl

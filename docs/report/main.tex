@@ -2,9 +2,14 @@
 \usepackage{configuration/configuration}
 \usepackage{multicol}
 \usepackage{multirow}
+%\usepackage{nomencl}
+%\makenomenclature
 
 % Path to the Bibliography file
 \addbibresource{bibliography.bib}
+
+%\renewcommand*\nomname{List of abbrevations}
+\renewcommand*\listfigurename{List of figures}
 
 \begin{document}
 
@@ -16,6 +21,30 @@
 \pagenumbering{roman}
 \include{chapters/0_abstract}
 \include{chapters/0_preface}
+
+\chapter*{List of abbrevations}
+\addcontentsline{toc}{chapter}{List of abbrevations}
+%\nomenclature{RDF}{Resource Description Framework}
+%\printnomenclature
+
+\begin{itemize}
+    \item[ ] LOD - Linked Open Data
+    \item[ ] OWL - Web Ontology Language
+    \item[ ] RDF - Resource Description Framework
+    \item[ ] RDFS - Resource Description Framework Schema
+    \item[ ] SPARQL - SPARQL Protocol and RDF Query Language
+    \item[ ] TURTLE - Terse RDF Triple Language
+
+\end{itemize}
+
+\newpage
+
+%\chapter*{List of abbrevations}
+\addcontentsline{toc}{chapter}{List of figures}
+\listoffigures
+
+\newpage
+
 \tableofcontents
 \cleardoublepage
 

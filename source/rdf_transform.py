@@ -15,11 +15,13 @@ import pathlib
 import re
 import sys
 
+#Define global datastructures
 postalDf = pd.DataFrame()
 municipalityUriDf = pd.DataFrame()
 namespaceUrl = "http://norpark.ml/"
 g = Graph()
 
+#Define and bind namespaces to graph
 pns = Namespace(namespaceUrl)
 g.namespace_manager.bind("norpark", pns)
 wikiprop = Namespace("https://www.wikidata.org/wiki/Property:")
@@ -29,13 +31,13 @@ geo = Namespace("http://www.w3.org/2003/01/geo/wgs84_pos#")
 g.namespace_manager.bind("geo", geo)
 geog = Namespace("http://www.opengis.net/ont/geosparql#")
 
+#Solution to filter out illegal characters in XML, solution taken from:
+#https://stackoverflow.com/questions/1707890/fast-way-to-filter-illegal-xml-unicode-chars-in-python
 def genereateIllegalXmlCharactersRegex():
-
     #List of illegal characters
     illegal_unichrs = [(0x00, 0x08), (0x0B, 0x0C), (0x0E, 0x1F),
                         (0x7F, 0x84), (0x86, 0x9F),
                         (0xFDD0, 0xFDDF), (0xFFFE, 0xFFFF)]
-
     if (sys.maxunicode >= 0x10000):
         illegal_unichrs.extend([(0x1FFFE, 0x1FFFF), (0x2FFFE, 0x2FFFF),
                                 (0x3FFFE, 0x3FFFF), (0x4FFFE, 0x4FFFF),
@@ -45,19 +47,21 @@ def genereateIllegalXmlCharactersRegex():
                                 (0xBFFFE, 0xBFFFF), (0xCFFFE, 0xCFFFF),
                                 (0xDFFFE, 0xDFFFF), (0xEFFFE, 0xEFFFF),
                                 (0xFFFFE, 0xFFFFF), (0x10FFFE, 0x10FFFF)])
-
     illegal_ranges = [fr'{chr(low)}-{chr(high)}' for (low, high) in illegal_unichrs]
     #Creates a regex string for the illegal characters.
     xml_illegal_character_regex = '[' + ''.join(illegal_ranges) + ']'
     return re.compile(xml_illegal_character_regex)
 
+#defines the regex to be used later
 illegalXmlCharactersRegex = genereateIllegalXmlCharactersRegex()
 
 
+#Query wikidata for all municipalities in Norway, fill data structure with information
 def fillMunicipalityUriDf():
     global municipalityUriDf
     #from Wikidata
     url = 'https://query.wikidata.org/sparql'
+    #Define query
     query = '''
     PREFIX wd: <http://www.wikidata.org/entity/>
     PREFIX wds: <http://www.wikidata.org/entity/statement/>
@@ -76,18 +80,21 @@ def fillMunicipalityUriDf():
             ?statement1 (ps:P131) ?county.
             ?municipality p:P17 ?statement2.
             ?statement2 (ps:P17) ?country.
+
             MINUS {
-            ?municipality p:P31 ?statement3.
-            ?statement3 (ps:P31/(wdt:P279*)) wd:Q18663579.
-          }
-          }
+                ?municipality p:P31 ?statement3.
+                ?statement3 (ps:P31/(wdt:P279*)) wd:Q18663579.
+            }
+    }
+    '''
 
-    # # '''
-    r = requests.get(url, params = {'format': 'json', 'query': query})
+    #perform query
+    r = requests.get(url, params = {'format': 'json', 'query': query}, headers={'User-Agent': 'norpark.ml'})
     data = r.json()
-
+    #Transform response to pandas dataframe
     municipalityUriDf = pd.json_normalize(data["results"]["bindings"])
 
+#Gather postal number data from Bring, and fille dataframe
 def fillPostalDf():
     global postalDf
     postalDataPath = "https://www.bring.no/radgivning/sende-noe/adressetjenester/postnummer/_/attachment/download/7f0186f6-cf90-4657-8b5b-70707abeb789:676b821de9cff02aaa7a009daf0af8a2a346a1bc/Postnummerregister-ansi.txt"
@@ -95,13 +102,7 @@ def fillPostalDf():
     header_list = ["postcode", "postplace", "citycode", "city", "category"]
     postalDf = pd.read_csv(postalDataPath, encoding='ISO-8859-1', sep='\t', names=header_list, dtype=str)
 
-def getMunicipalityCodeFromPostal(postalCode):
-    return postalDf.loc[postalDf['postcode'] == postalCode].iloc[0]['citycode']
-
-def getLocationUrisFromMunicipalityCode(code):
-    return municipalityUriDf.loc[municipalityUriDf['municipalityCode.value'] == code].iloc[0]
-
-
+#Fill datastructure for parking, based on json file
 def getParkingDict():
     #Uses the JSON file created with data from Statens Vegvesen
     parkingInformationFilePath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parkingInformation.json"
@@ -109,16 +110,27 @@ def getParkingDict():
     data = json.load(f)
     return data
 
+#Helper functions:
+def getMunicipalityCodeFromPostal(postalCode):
+    return postalDf.loc[postalDf['postcode'] == postalCode].iloc[0]['citycode']
+def getLocationUrisFromMunicipalityCode(code):
+    return municipalityUriDf.loc[municipalityUriDf['municipalityCode.value'] == code].iloc[0]
+
+#Add all triples of parking provider to graph
 def addProviderTriples(provider):
+    #Create uri of provider
     providerUri = URIRef(pns + "C" + provider["organisasjonsnummer"])
+
+    #Create URIs of external resources
     municipalityCode = getMunicipalityCodeFromPostal(provider["postnummer"])
-    # municipalityIri = URIRef("Q13453153421")
     locationInfo = getLocationUrisFromMunicipalityCode(municipalityCode)
     municipalityIri = URIRef(locationInfo["municipality.value"])
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
     org_number_propIri = URIRef("https://www.wikidata.org/wiki/Property:P2333")
 
+    #Add triples to graph
+    g.add( ( providerUri, RDF.type, pns.ParkingCompany ) )
     g.add( ( providerUri, org_number_propIri, Literal( provider["organisasjonsnummer"] ) ) )
     g.add( ( providerUri, RDFS.label, Literal( provider["navn"] ) ) )
     g.add( ( providerUri, SDO.url, Literal( provider["nettsted"] ) ) )
@@ -138,8 +150,12 @@ def addProviderTriples(provider):
     g.add( ( address, SDO.addressRegion, countyIri) )
     g.add( ( address, SDO.addressCountry, countryIri) )
 
+#Add triples for parking facility to graph
 def addFacilityTriples(facility):
+    #Create uri of facility
     facilityUri = URIRef(pns + "F" + str(facility["id"]))
+
+    #Create URIs of external resources
     municipalityCode = getMunicipalityCodeFromPostal(facility["aktivVersjon"]["postnummer"])
     providerUri = URIRef(pns + "C" + facility["parkeringstilbyderOrganisasjonsnummer"])
     locationInfo = getLocationUrisFromMunicipalityCode(municipalityCode)
@@ -147,10 +163,11 @@ def addFacilityTriples(facility):
     countyIri = URIRef(locationInfo["county.value"])
     countryIri = URIRef(locationInfo["country.value"])
 
+    #Add triples to graph
     g.add( ( facilityUri, pns.operated_by, providerUri) )
     g.add( ( facilityUri, RDFS.label, Literal( facility["aktivVersjon"]["navn"]) ) )
+
     address = BNode()
-    # address = URIRef(pns + "address/F" + str(facility["id"]))
     g.add( ( facilityUri, SDO.PostalAddress, address ) )
     g.add( ( address, RDF.type, SDO.PostalAddress ) )
     g.add( ( address, SDO.streetAddress, Literal( facility["aktivVersjon"]["adresse"] ) ) )
@@ -158,7 +175,6 @@ def addFacilityTriples(facility):
     g.add( ( address, SDO.addressLocality, municipalityIri) )
     g.add( ( address, SDO.addressRegion, countyIri) )
     g.add( ( address, SDO.addressCountry, countryIri) )
-
     g.add( ( facilityUri, pns.no_of_parking_spaces_with_fee, Literal( facility["aktivVersjon"]["antallAvgiftsbelagtePlasser"] ) ) )
     g.add( ( facilityUri, pns.no_of_parking_spaces_without_fee, Literal( facility["aktivVersjon"]["antallAvgiftsfriePlasser"] ) ) )
     g.add( ( facilityUri, pns.no_of_electric_vehicle_chargers, Literal( facility["aktivVersjon"]["antallLadeplasser"] ) ) )
@@ -226,7 +242,6 @@ def addOntology():
     g.add( (uri, RDF.type, RDFS.Datatype) )
     g.add( (uri, RDFS.label, Literal("active", lang="en") ) )
     g.add( (uri, RDFS.comment, Literal("Tells if the parking facility is active or not.", lang="en") ) )
-    g.add( (uri, RDFS.domain, URIRef(pns + "ParkingFacility") ) )
     g.add( (uri, RDFS.range, XSD.boolean) )
 
 
@@ -321,8 +336,6 @@ def fillGraph(parkDict):
         #For every parking facility the parking provider has, generate RDF triples for it.
         for i in v["parkeringsomrader"]:
             addFacilityTriples(i)
-        # break;
-
 
 def transform():
     fillPostalDf()
@@ -337,12 +350,9 @@ def transform():
     #Create the file path for the rdf file.
     rdfPath = str(pathlib.Path(__file__).parent.resolve()) + "/../data/parking.rdf"
     g.serialize(destination=rdfPath, format="xml")
-    # g.serialize(destination="parking.ttl")
     #Change permissions so that airflow is able to access the file.
     os.chmod(rdfPath, stat.S_IWUSR | stat.S_IRUSR | stat.S_IRGRP | stat.S_IROTH)
-
     print("Done!")
-
 
 if __name__ == '__main__':
     transform()

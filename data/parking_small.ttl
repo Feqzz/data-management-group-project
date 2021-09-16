@@ -1,0 +1,118 @@
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix norpark: <http://norpark.ml/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema-org: <http://schema.org/> .
+@prefix wikiprop: <https://www.wikidata.org/wiki/Property:> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+norpark:ParallelParking a rdfs:Class ;
+    rdfs:subClassOf norpark:ParallelParking,
+        norpark:ParkingFacility .
+
+norpark:ParkingCompany a rdfs:Class ;
+    rdfs:subClassOf <http://schema.mobivoc.org/#Organization> .
+
+norpark:ParkingFacility a rdfs:Class ;
+    rdfs:subClassOf <http://schema.mobivoc.org/#ParkingFacility> .
+
+norpark:ParkingGarage a rdfs:Class ;
+    rdfs:subClassOf norpark:ParkingFacility,
+        <http://schema.mobivoc.org/#ParkingGarage> .
+
+norpark:ParkingLot a rdfs:Class ;
+    rdfs:subClassOf norpark:ParkingFacility,
+        <http://schema.mobivoc.org/#ParkingLot> .
+
+norpark:F961 a norpark:ParkingLot ;
+    rdfs:label "Skateflua" ;
+    norpark:activation_date "2016-12-22T08:00:05+00:00"^^xsd:dateTime ;
+    norpark:active false ;
+    norpark:deactivation_date "2018-01-02T09:20:24+00:00"^^xsd:dateTime ;
+    norpark:handicap_information "HC plasser i tilknytning til stedet"@no ;
+    norpark:no_of_electric_vehicle_chargers 0 ;
+    norpark:no_of_handicap_parking_spaces 0,
+        "0"^^xsd:unsignedInt ;
+    norpark:no_of_parking_spaces_with_fee 15 ;
+    norpark:no_of_parking_spaces_without_fee 0 ;
+    norpark:operated_by norpark:C930475610 ;
+    schema-org:PostalAddress [ a schema-org:PostalAddress ;
+            schema-org:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            schema-org:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            schema-org:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            schema-org:postalCode "6002" ;
+            schema-org:streetAddress "Skaregata 1A" ] ;
+    rdfs:comment "Skateflua is a parking lot in Norway."@en,
+        "Skateflua er en parkeringsplass i Norge."@no ;
+    geo:lat "62.474309"^^xsd:float ;
+    geo:long "6.155262"^^xsd:float ;
+    wikiprop:P625 "Point(6.155262 62.474309)"^^geo:wktLiteral .
+
+norpark:activation_date a rdfs:Datatype ;
+    rdfs:label "activation date"@en ;
+    rdfs:comment "The date the Parking facility was activated."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:dateTime .
+
+norpark:active a rdfs:Datatype ;
+    rdfs:label "active"@en ;
+    rdfs:comment "Tells if the parking facility is active or not."@en ;
+    rdfs:range xsd:boolean .
+
+norpark:deactivation_date a rdfs:Datatype ;
+    rdfs:label "deactivation date"@en ;
+    rdfs:comment "The date the Parking facility was deactivated."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:dateTime .
+
+norpark:handicap_information a rdfs:Datatype ;
+    rdfs:label "handicap information"@en ;
+    rdfs:comment "Handicap information for the parking facility."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:string .
+
+norpark:no_of_electric_vehicle_chargers a rdfs:Datatype ;
+    rdfs:label "number of electric vehicle chargers"@en ;
+    rdfs:comment "Number of electric vehicle chargers available at the parking facility."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:integer .
+
+norpark:no_of_handicap_parking_spaces a rdfs:Datatype ;
+    rdfs:label "number of handicap parking spaces."@en ;
+    rdfs:comment "Number of handicap parking spaces."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:integer .
+
+norpark:no_of_parking_spaces_with_fee a rdfs:Datatype ;
+    rdfs:label "number of parking spaces with fee"@en ;
+    rdfs:comment "Number of parking spaces with a fee."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:integer .
+
+norpark:no_of_parking_spaces_without_fee a rdfs:Datatype ;
+    rdfs:label "number of parking spaces without fee"@en ;
+    rdfs:comment "Number of parking spaces without a fee."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range xsd:integer .
+
+norpark:operated_by a rdf:Property ;
+    rdfs:label "is operated by"@en ;
+    rdfs:comment "A parking facility is operated by a parking company."@en ;
+    rdfs:domain norpark:ParkingFacility ;
+    rdfs:range norpark:ParkingCompany ;
+    rdfs:subClassOf <http://schema.mobivoc.org/#operatedBy> .
+
+norpark:C930475610 a norpark:ParkingCompany ;
+    rdfs:label "ÅLESUND PARKERING AS" ;
+    norpark:active true ;
+    schema-org:ContactPoint [ a schema-org:ContactPoint ;
+            schema-org:email "alesund.parkering@alesund.kommune" ;
+            schema-org:telephone "70 16 21 28" ] ;
+    schema-org:PostalAddress [ a schema-org:PostalAddress ;
+            schema-org:addressCountry <http://www.wikidata.org/entity/Q20> ;
+            schema-org:addressLocality <http://www.wikidata.org/entity/Q62266> ;
+            schema-org:addressRegion <http://www.wikidata.org/entity/Q50627> ;
+            schema-org:postalCode "6004" ] ;
+    schema-org:url "www.alesundparkering.no" ;
+    wikiprop:P2333 "930475610" .
+
